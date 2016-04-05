@@ -1,0 +1,191 @@
+.ui-icon-sedwe-syncStill {
+	background-image: url("../../assets/images/SyncStill.gif");
+}
+
+.ui-icon-sedwe-syncAnimate {
+	background-image: url("../../assets/images/SyncAnimate.gif");
+}
+
+ .ui-panel-inner {
+     padding:0px;
+	 overflow: hidden !important;
+ }
+ .ui-controlgroup {
+     margin:0;
+ }
+ #userPageHeader {
+     height:54px;
+ }
+
+ #bars-button {
+     margin:7px;
+ }
+  .panel-content {
+     overflow-y: scroll !important
+ }
+ 
+.has-odd-thumb li a {
+    padding-left: 58px !important;
+}
+
+.noBorder { border: none !important; }
+
+.xxx {
+  class: ui-btn ui-icon-delete ui-btn-inline;
+}
+
+
+.hidden { display: none; }
+
+body { font-size: 100% }
+h1 {font-size: 200% }
+
+@media all and (max-width:600px) {
+    body {font-size: 90%}
+}
+
+#popupP61.ui-btn-active {
+  background:green !important;
+}
+
+/* Less then 639 px -------------------*/ 
+@media all and (max-width: 639px){  
+
+
+}       
+
+.column {  
+	position: relative;
+	width: 46%;
+	padding: 1%;    
+}    
+.left {        
+    float: left;    }    
+.right { 
+float: right;    
+}
+/*
+  dl {
+    padding: 0;
+  }
+  dt {
+    float: left;
+    clear: left;
+    width: 120px;
+    text-align: left;
+    font-weight:normal;
+    color: black;
+  }
+  dt:after {
+    content: ":";
+  }
+  dd {
+    margin: 0 0 0 125px;
+    padding: 0 0 0.5em 0;
+  }
+  */
+  dl {
+	/*width:300px; */
+/*	float:left;*/	 
+	padding: 0;
+/*	margin-right:2em;*/
+  }
+  dt {
+	font-weight:bold;
+	font-size:0.9em;
+  }
+  dt:after {
+    content: ":";
+  }
+  dd {
+	color:#444;
+	font-size:0.9em;
+	/*padding-left:4.5em;*/
+  }
+  
+   dt.current {
+    float: left;
+    clear: left;
+    width: 110px;
+    text-align: left;
+    font-weight:normal;
+    color: black;
+  } 
+   dd.current {
+    margin: 0 0 0 115px;
+    padding: 0 0 0.5em 0;
+  } 
+.required label {
+    font-weight: bold;
+}
+
+
+.mandatory label:after {
+    color: #e32;
+    content: ' *';
+    display:inline;
+}
+.veryImportant label:after {
+    color: #e32;
+    content: ' +';
+    display:inline;
+}
+.redColor {
+    color: #e32;
+}
+.ui-field-contain div.ui-slider-switch  { width: 22em }
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 45%; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.ui-timepicker-rtl dl dd { margin: 0 45% 10px 10px; }
+
+.controlgroup-textinput{    padding-top:.22em;    padding-bottom:.22em;}
+
+.centerObj {
+     margin-left: auto;
+     margin-right: auto;
+     width: 98%;
+     background-color: #b0e0e6;
+ }
+
+
+.containerTable {
+    border: 1px solid black;
+    padding: 5px;
+    vertical-align: top;
+}
+
+table.containerTable {
+    display:block;
+    max-width:600px;
+    horiz-align:center;
+}
+
+td.containerTable {
+    background-color: #eee;
+    width:1%;
+
+}
+table.paramTable {
+    width:80%;
+    float:right;
+}
+
+td.paramTable {
+    background-color: #ddd;
+    border:0;
+    align-content: center;
+    display:block;
+
+    padding-left:80px;
+}
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery Mobile Form</title>       
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+        
+        
+        <link rel="stylesheet" href="jquery-mobile.css">
+        <script src="jquery-mobile.js"></script>
+
+    </head>
+    <body>
+        <!--------------first page for form----------->
+        <div data-role="page">  
+            <!--------------first page header----------->
+            <div data-role="header">
+                <h1>jQuery Mobile Form</h1>
+            </div> 
+            <!--------------first page main content----------->
+            <div data-role="main" class="ui-content">  
+                <form method="post" action="#pageone" data-ajax="false">
+                    
+                    <label for="name">Name : <span>*</span></label>
+                    <input type="text" name="name" id="name" placeholder="Name">
+                    
+                    <label for="email">Email: <span>*</span></label>
+                    <input type="email" id="email" name="email" placeholder="Email"/>
+                    
+                    <fieldset data-role="controlgroup">
+                        <legend>Gender:</legend>
+                        <label for="male">Male</label>
+                        <input type="radio" name="gender" id="male" value="male">
+                        <label for="female">Female</label>
+                        <input type="radio" name="gender" id="female" value="female">	
+                    </fieldset>
+                    
+                    <fieldset data-role="controlgroup">
+                        <legend>Qualification:</legend>
+                        <label for="graduation">Graduation</label>
+                        <input type="checkbox" id="graduation" value="graduation">
+                        <label for="postgraduation">Post Graduation</label>
+                        <input type="checkbox" id="postgraduation" value="postgraduation">
+                        <label for="other">Other</label>
+                        <input type="checkbox" id="other" value="other">	
+                    </fieldset>
+                    
+                    <label for="info">Message:</label>
+                    <textarea name="addinfo" id="info" placeholder="Message"></textarea>
+
+                    <input type="submit" data-inline="true" value="Submit" data-theme="b">	  
+                </form>
+            </div>
+            <!--------------first page footer----------->
+
+            <div data-role="footer">
+                <h1>Form<span id="yellow">Get.</span>com</h1>
+            </div>
+        </div>
+        <!-------------------------------------------------------------
+        End of First page
+        -------------------------------------------------------------->
+        <!--------------second page----------->
+        <div data-role="page" id="pageone">
+            <!--------------second page header----------->
+            <div data-role="header">
+                <h1>JQuery Mobile Form</h1>
+            </div>
+            <!--------------second page main content----------->
+            <div data-role="main" class="ui-content">
+                <h2>Form Submitted Successfully...!!</h2>
+            </div>
+            <!--------------second page footer----------->
+            <div data-role="footer">
+                <h1>Form<span id="yellow">Get.</span>com</h1>
+            </div>
+        </div> 
+
+        <!-------------------------------------------------------------
+        End of Second page
+        -------------------------------------------------------------->
+    </body>
+</html>

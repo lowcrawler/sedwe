@@ -1,0 +1,15 @@
+/*  CSS Document - jQuery Mobile Overrides                */
+/*  Written by Chris Converse - http://codifydesign.com   */
+
+
+/* Global Overrides */
+body { 
+background-color: #D3B593; 
+
+background: #D3B593;
+background-image:url(/SedWE/assets/images/base.jpg);
+background-size:cover;  
+}
+
+.ui-header h1.ui-title { font-size: 20px; text-align: center; margin: .6em 10px .8em 55px; }
+

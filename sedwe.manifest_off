@@ -1,0 +1,33 @@
+CACHE MANIFEST
+# 2015.15.04 v0.9.81
+CACHE:
+#index.html
+modernizr-latest.js
+jquery-mobile142/jquery.mobile.theme-1.4.2.min.css
+jquery-mobile142/themes/customsedwe.min.css
+jquery-mobile142/themes/jquery.mobile.icons.min.css
+jquery-mobile142/jquery.mobile.structure-1.4.2.min.css
+jquery-mobile142/jquery-1.11.0.min.js
+jquery-mobile142/jquery.mobile-1.4.2.min.js
+jquery.validate.min.js
+assets/js/ajaxFunctions.js
+assets/js/generateTagstoString.js
+assets/js/globalVariables.js
+assets/js/helperFunctions.js
+assets/js/layoutFunctions.js
+assets/js/localStorageFunctions.js
+assets/js/navMenu.js
+assets/js/sedweClientSetup.js
+assets/js/xmlToLocalStorage.js
+assets/js/ajaxFunctions.js
+assets/css/menu.css
+512.png
+152.png
+assets/images/sedwe-logo-225.jpg
+assets/images/sedwe-logo-225.gif
+assets/images/usgs-b.gif
+
+NETWORK:
+*
+
+FALLBACK:

@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<!--html manifest="sedwe.manifest"-->
+<html>
+<head>
+	<title>SedWE Web App</title>
+	<meta http-equiv="x-ua-compatible" content="IE=EDGE"/>
+	<meta charset="utf-8">
+	<link rel="apple-touch-startup-image" href="../512.png"/>
+	<link rel="shortcut icon" href="../152.png" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="viewport" content="initial-scale=1.0"/>
+	<meta name="viewport" content="width=320.1"/>
+
+	<link rel="apple-touch-icon" href="../512.png"/>
+
+	<link rel="stylesheet" href="../jquery-mobile142/themes/customsedwe.min.css" type="text/css"/>
+	<link rel="stylesheet" href="../jquery-mobile142/themes/jquery.mobile.icons.min.css" type="text/css"/>
+	<link rel="stylesheet" href="../jquery-mobile142/jquery.mobile.structure-1.4.2.min.css" type="text/css"/>
+	<!--link rel="stylesheet" href="assets/css/overrides.css" type="text/css"/-->
+	<script src="../modernizr-latest.js" type="text/javascript"></script>
+	<script src="../jquery-mobile142/jquery-1.11.0.min.js" type="text/javascript"></script>
+	<script src="../jquery-mobile142/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
+	<script src="../jquery.validate.min.js" type="text/javascript"></script>
+	<script src="../assets/js/jquery.maskedinput.js" type="text/javascript"></script>
+	<script src="../assets/js/datetime/jquery.datetimepicker.js" type="text/javascript"></script>
+
+	<script src="../assets/js/globalVariables.js" type="text/javascript"></script>
+	<script src="../assets/js/navMenu.js" type="text/javascript"></script>
+	<script src="../assets/js/ajaxFunctions.js" type="text/javascript"></script>
+	<script src="../assets/js/helperFunctions.js" type="text/javascript"></script>
+	<script src="../assets/js/localStorageFunctions.js" type="text/javascript"></script>
+	<script src="../assets/js/layoutFunctions.js" type="text/javascript"></script>
+	<script src="../assets/js/sedweClientSetup.js" type="text/javascript"></script>
+	<script src="../assets/js/generateTagstoString.js" type="text/javascript"></script>
+	<script src="../assets/js/xmlToLocalStorage.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" type="text/css" href="../assets/js/datetime/jquery.datetimepicker.css"/>
+	<link rel="stylesheet" href="../assets/css/menu.css" type="text/css"/>
+
+	<!--link rel="stylesheet" href="assets/css/overrides.css" type="text/css" /-->
+
+
+	<style>
+		.error {
+			border-color: #F78181;
+			color: red;
+			block;
+		}
+
+		.ui-button {
+			margin: 0 auto;
+		}
+
+		.ui-header .ui-title, .ui-footer .ui-title {
+			margin: 0.6em 10% 0.8em !important;
+		}
+
+		.backgnd {
+			background: #D3B593;
+		!important;
+			background-image: url(../assets/images/base.jpg);
+		!important;
+			background-size: cover;
+		}
+	</style>
+</head>
+
+<body>
+
+
+<!-- userPage PAGE -->
+<div data-role="page" id="userPage" data-theme="d">
+
+	<div id="userPageHeader" data-role="header" data-position="fixed" data-tap-toggle="false">
+		<img src="../assets/images/usgs-b.gif" alt="USGS logo" style="margin: 10px 0 10px 5px">
+	</div>
+	<div data-role="content">
+		<div id="Dialog" data-overlay-theme="b" data-theme="d" data-dismissible="false" style="max-width:400px;">
+			<p style="text-align:center"><img src="../assets/images/sedwe-logo-225.gif" alt="SED_WE logo"
+											  style="margin: 10px 0 10px 5px"></p>
+
+			<div id="mainLoginDialog" role="main" class="ui-content centerObj">
+				<script type="text/javascript">login(0)</script>
+			</div>
+			<br/>
+
+			<h2 style="text-align:center"><a href="#about" style="text-decoration:none !important;">About SEDWE</a></h2>
+		</div>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<h3></h3>
+	</div>
+</div>
+
+<!-- about PAGE (not logged in)-->
+<div data-role="page" id="about" data-theme="d">
+
+	<div id="aboutHeader" data-role="header" data-position="fixed" data-tap-toggle="false">
+		<img src="../assets/images/usgs-b.gif" alt="USGS logo" style="margin: 10px 0 10px 5px">
+	</div>
+	<div data-role="content">
+		<div id="aboutDialog" data-overlay-theme="b" data-theme="d" data-dismissible="false" style="max-width:400px;">
+
+			<p style="text-align:center"><img src="../assets/images/sedwe-logo-225.jpg" alt="SED_WE logo"></p>
+
+			<div id="mainDialog" role="main" class="ui-content">
+				<p>The Sediment Data and Information Web-based (SEDWE) is created by the United States Geological
+					Survey. </p>
+
+				<p>SED_WE provides users a range of hand-held platforms to handle and transfer USGS sediment-sample data
+					and information collected in the field into the National Water Information System (NWIS), and to the
+					USGS Sediment Laboratory Environmental Database System (SLEDS), through the Sediment-sample (Sed)
+					application.</p>
+
+				<p><span><strong>Contact:&nbsp;</strong></span>gs-w_sedwe@usgs.gov
+					<br/><span><strong>Version:&nbsp;</strong></span> 0.9.0.0</p>
+			</div>
+		</div>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#userPage" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to Login</a>
+	</div>
+</div>
+
+
+<!-- HELP-> ABOUT PAGE (logged in)==============================================-->
+<div data-role="page" id="help_about" data-theme="d">
+	<div id="aboutHeader" data-role="header" data-position="fixed" data-tap-toggle="false">
+		<img src="../assets/images/usgs-b.gif" alt="USGS logo" style="margin: 10px 0 10px 5px">
+	</div>
+	<div data-role="content">
+		<div id="aboutDialog" data-overlay-theme="b" data-theme="d" data-dismissible="false" style="max-width:400px;">
+
+			<p style="text-align:center"><img src="../assets/images/sedwe-logo-225.jpg" alt="SED_WE logo"></p>
+
+			<div id="mainDialog" role="main" class="ui-content">
+				<p>The Sediment Data and Information Web-based (SEDWE) is created by the United States Geological
+					Survey. </p>
+
+				<p>SED_WE provides users a range of hand-held platforms to handle and transfer USGS sediment-sample data
+					and information collected in the field into the National Water Information System (NWIS), and to the
+					USGS Sediment Laboratory Environmental Database System (SLEDS), through the Sediment-sample (Sed)
+					application.</p>
+
+				<p><span><strong>Contact:&nbsp;</strong></span>gs-w_sedwe@usgs.gov
+					<br/><span><strong>Version:&nbsp;</strong></span> 0.9.0.0</p>
+			</div>
+		</div>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#MainMenu" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to Main
+			Menu</a>
+	</div>
+</div>
+
+
+<!-- MainMenu PAGE -->
+<div data-role="page" id="MainMenu" data-theme="d">
+
+	<div data-role="panel" id="navpanelHome" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+		<a href="#clearLSDialog" data-role="button" data-rel="popup">Clear Local Storage</a>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelHome" data-iconpos="notext">Menu</a>
+		<div id="syncingDiv">
+			<a id="syncingArea" class="ui-btn-left" style="margin-top:10px;" onclick="attemptToSyncLSAndDB(SyncCompleteCallback, SyncFailCallback)"></a> <!--data-icon="sedwe-syncAnimate"-->
+		</div>
+		<script type="text/javascript">
+			$("#syncingDiv").hide(0);
+		</script>
+		<h3 id='MainMenuHeader'></h3>
+	</div>
+	<div data-role="content">
+		<div data-collapsed="false" data-content-theme="c" data-iconpos="right" data-role="collapsible"
+			 data-collapsed-icon="plus" data-expanded-icon="minus">
+			<h2>Shipments Manager</h2>
+			<ul data-role="listview">
+				<li><a href="#newEvent" onClick="setEventCounter();">Add sets or groups of samples</a></li>
+				<li><a href="#currentShipmentPage" id='currentButton'>Current Shipment</a></li>
+				<li><a href="#historyPage" id='historyButton'>Review / History</a></li>
+				<li><a href="#testingPage" id='testingButton'>TESTING ONLY</a></li>
+			</ul>
+		</div>
+
+		<div style="max-width: 400px;" id="clearLSDialog" data-role="popup" data-theme="d" data-overlay-theme="d"
+			 data-dismissible="false" data-position-to="window">
+			<div data-role="header" data-theme="a">
+				<h1>Clear Local Storage</h1>
+			</div>
+			<div class="ui-content" role="main">
+				<p>This will clear all SedWE data from the local device.  Use with <u>EXTREME</u> caution.  All data not syncronized with the SedWE database will be irretriveably lost.</p>
+				<p><b>This action cannot be undone!</b></p>
+				<a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" href="#" data-rel="back">Cancel</a>
+				<a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" href="" data-transition="flow" data-rel="back" onclick="window.localStorage.clear();window.location.href='../index.html';">Delete</a>
+			</div>
+		</div>
+
+
+
+		<!--Image Manager
+		<div data-role="collapsible" data-collapsed="true" data-content-theme="c" data-collapsed-icon="plus" data-theme="d"
+			 data-expanded-icon="minus" data-iconpos="right">
+			<h1>Manage Images</h1>
+
+			<ul data-role="listview">
+				<div style="padding:10px">
+					<p id="pictureManagerFeedback" style="color:rgb(255,0,0)"></p>
+					<form id="pictureManager" action="?" method="POST" enctype="multipart/form-data">
+						<input type="file" id="takePicture" name="takePicture"/>
+						<img id="show-picture" alt="" height='200px' style="border-radius:10px; padding:5px"/>
+						<label for="imgComment">Comment:</label>
+						<textarea cols="40" rows="12"  id="imgComment" placeholder="Describe the picture."></textarea>
+						<!--input type="button" id="uploadImgBtn" value="Submit!"/
+						<a id="submitImgBtn" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-d">Submit</a>
+					</form>
+					<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+						<div data-role="header" data-theme="a">
+							 <h1>Send Picture and comment?</h1>
+						</div>
+						<div role="main" class="ui-content">
+							<h3 class="ui-title">Are you sure you want to send this picture and this comment?</h3>
+							<img src="" height="100px" id="imgPreview" alt=""/>
+							<p id="commentPreview"></p>
+							<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-d" data-rel="back">Cancel</a>
+							<a href="#" id="uploadImgBtn" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-icon-right ui-icon-mail ui-btn-b" data-rel="back" data-transition="flow">Send</a>
+						</div>
+					</div>
+				</div>
+			</ul>
+		</div>
+		<!-- image manager ends -->
+
+		<div data-role="collapsible" data-collapsed="true" data-content-theme="c" data-collapsed-icon="plus"
+			 data-theme="d"
+			 data-expanded-icon="minus" data-iconpos="right">
+			<h2>Help</h2>
+			<ul data-role="listview">
+				<li><a href="#help_manual" id="help_manual">Users Manual</a></li>
+				<li><a href="#help_about" id='help_about'>About SedWE</a></li>
+				<li><a href="#help_release" id='help_release'>Release Notes</a></li>
+			</ul>
+		</div>
+	</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<!--a href="#" class="ui-btn-lef" data-icon="arrow-l" data-direction="reverse" data-rel="back">Back</a-->
+		<!-- <a href="#userPage" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to Home</a> -->
+	</div>
+</div>
+<!-- MainMenu-->
+
+<!-- HELP-> USER MANUAL PAGE ==============================================-->
+<div data-role="page" id="help_manual" data-theme="d">
+	<div data-role="panel" id="navpanel_help_manual" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanel_help_manual"
+		   data-iconpos="notext">Menu</a>
+
+		<h3>SedWE User Manual</h3>
+	</div>
+	<div data-role="content">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit, nisl non blandit ornare, nulla
+			risus pellentesque massa, a eleifend mi lacus quis arcu. Aenean finibus interdum erat et vestibulum. Sed
+			pulvinar nisi a dui ullamcorper commodo. Ut congue nunc vitae laoreet porttitor. Integer ex nisi, porttitor
+			non pulvinar et, fringilla viverra neque. Aliquam et convallis lorem. Donec non pharetra sem. Nulla viverra
+			lorem sit amet blandit consectetur. Pellentesque lobortis quis lorem nec facilisis. In nec sapien vel libero
+			suscipit viverra vel sed massa. Donec quis ullamcorper ipsum. Nullam porttitor fermentum nunc vel
+			sollicitudin. Suspendisse luctus lacinia ultricies.
+
+		<p>Sed ut tellus at magna consectetur iaculis. Vivamus consequat velit sed viverra sagittis. Maecenas auctor sem
+			eu ipsum pellentesque feugiat. Fusce ex nisl, pulvinar vitae finibus vitae, pellentesque a risus. Phasellus
+			sed tincidunt elit. Quisque tincidunt condimentum odio vitae ultricies. Sed a nisi eu felis pellentesque
+			scelerisque non non nibh. Maecenas nec risus vitae felis sagittis placerat fermentum a leo.
+
+		<p>Pellentesque vestibulum dolor est, vitae rhoncus sem posuere sit amet. Mauris hendrerit condimentum mi et
+			blandit. In hac habitasse platea dictumst. Vivamus tincidunt turpis et risus pulvinar, sed tristique massa
+			lobortis. Etiam tristique convallis venenatis. Nam hendrerit nisi vel sem convallis, ut aliquam dui
+			bibendum. Maecenas luctus dui lorem. Mauris porta, odio ac dapibus auctor, mauris ipsum tincidunt arcu, a
+			hendrerit augue elit vestibulum neque. Integer sodales felis id erat gravida, id sodales est fringilla.
+			Fusce molestie odio sit amet massa condimentum porttitor. Cras quis sapien sapien. Vestibulum elementum
+			congue ultricies. Fusce porta vehicula urna, in convallis nunc maximus vel. Nam elementum dui vitae nunc
+			varius tempor. Aenean tristique id est a suscipit.
+
+		<p>Vestibulum efficitur, sapien et fringilla porttitor, augue lacus ultricies felis, a ullamcorper tortor nisl a
+			dui. Morbi semper odio vel cursus commodo. Sed leo metus, posuere sed molestie ut, mollis ornare eros. Cras
+			eu metus orci. Vivamus sed facilisis ipsum. Suspendisse quis dictum massa, nec rhoncus arcu. Sed lacinia
+			velit libero, vel fermentum velit pulvinar id.
+
+		<p>Praesent tristique vulputate lorem id pretium. Etiam molestie feugiat aliquet. Pellentesque purus arcu,
+			pharetra eget lectus ac, accumsan porttitor felis. Vivamus venenatis lorem eget magna pharetra scelerisque.
+			Fusce tempus eros vitae urna consectetur, at hendrerit purus auctor. Interdum et malesuada fames ac ante
+			ipsum primis in faucibus. Fusce dapibus volutpat metus. Morbi eget nisl tempus, iaculis ante vitae, viverra
+			lorem. Fusce quis orci vulputate, congue odio sit amet, finibus orci. Mauris faucibus pharetra nulla ac
+			pellentesque. Aenean tincidunt ex a mi ultricies gravida. Maecenas nec pulvinar tortor, eget posuere dolor.
+	</div>
+
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#MainMenu" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to main
+			menu</a>
+	</div>
+</div>
+
+
+<!-- HELP-> USER MANUAL PAGE ==============================================-->
+<div data-role="page" id="help_release" data-theme="d">
+	<div data-role="panel" id="navpanel_help_release" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanel_help_release"
+		   data-iconpos="notext">Menu</a>
+
+		<h3>SedWE BETA Release Notes</h3>
+	</div>
+	<div data-role="content">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer suscipit, nisl non blandit ornare, nulla
+			risus pellentesque massa, a eleifend mi lacus quis arcu. Aenean finibus interdum erat et vestibulum. Sed
+			pulvinar nisi a dui ullamcorper commodo. Ut congue nunc vitae laoreet porttitor. Integer ex nisi, porttitor
+			non pulvinar et, fringilla viverra neque. Aliquam et convallis lorem. Donec non pharetra sem. Nulla viverra
+			lorem sit amet blandit consectetur. Pellentesque lobortis quis lorem nec facilisis. In nec sapien vel libero
+			suscipit viverra vel sed massa. Donec quis ullamcorper ipsum. Nullam porttitor fermentum nunc vel
+			sollicitudin. Suspendisse luctus lacinia ultricies.
+
+		<p>Sed ut tellus at magna consectetur iaculis. Vivamus consequat velit sed viverra sagittis. Maecenas auctor sem
+			eu ipsum pellentesque feugiat. Fusce ex nisl, pulvinar vitae finibus vitae, pellentesque a risus. Phasellus
+			sed tincidunt elit. Quisque tincidunt condimentum odio vitae ultricies. Sed a nisi eu felis pellentesque
+			scelerisque non non nibh. Maecenas nec risus vitae felis sagittis placerat fermentum a leo.
+
+		<p>Pellentesque vestibulum dolor est, vitae rhoncus sem posuere sit amet. Mauris hendrerit condimentum mi et
+			blandit. In hac habitasse platea dictumst. Vivamus tincidunt turpis et risus pulvinar, sed tristique massa
+			lobortis. Etiam tristique convallis venenatis. Nam hendrerit nisi vel sem convallis, ut aliquam dui
+			bibendum. Maecenas luctus dui lorem. Mauris porta, odio ac dapibus auctor, mauris ipsum tincidunt arcu, a
+			hendrerit augue elit vestibulum neque. Integer sodales felis id erat gravida, id sodales est fringilla.
+			Fusce molestie odio sit amet massa condimentum porttitor. Cras quis sapien sapien. Vestibulum elementum
+			congue ultricies. Fusce porta vehicula urna, in convallis nunc maximus vel. Nam elementum dui vitae nunc
+			varius tempor. Aenean tristique id est a suscipit.
+
+		<p>Vestibulum efficitur, sapien et fringilla porttitor, augue lacus ultricies felis, a ullamcorper tortor nisl a
+			dui. Morbi semper odio vel cursus commodo. Sed leo metus, posuere sed molestie ut, mollis ornare eros. Cras
+			eu metus orci. Vivamus sed facilisis ipsum. Suspendisse quis dictum massa, nec rhoncus arcu. Sed lacinia
+			velit libero, vel fermentum velit pulvinar id.
+
+		<p>Praesent tristique vulputate lorem id pretium. Etiam molestie feugiat aliquet. Pellentesque purus arcu,
+			pharetra eget lectus ac, accumsan porttitor felis. Vivamus venenatis lorem eget magna pharetra scelerisque.
+			Fusce tempus eros vitae urna consectetur, at hendrerit purus auctor. Interdum et malesuada fames ac ante
+			ipsum primis in faucibus. Fusce dapibus volutpat metus. Morbi eget nisl tempus, iaculis ante vitae, viverra
+			lorem. Fusce quis orci vulputate, congue odio sit amet, finibus orci. Mauris faucibus pharetra nulla ac
+			pellentesque. Aenean tincidunt ex a mi ultricies gravida. Maecenas nec pulvinar tortor, eget posuere dolor.
+	</div>
+
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#MainMenu" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to main
+			menu</a>
+	</div>
+</div>
+
+
+<!-- TESTING PAGE ==============================================-->
+<div data-role="page" id="testingPage" data-theme="d">
+	<div data-role="panel" id="navpanelTestingPage" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a type="button" class="syncingClass ui-btn-left" style="margin-top:10px;" data-role="button" data-icon="sedwe-syncAnimate" data-iconpos="notext" onclick="attemptToSyncLSAndDB(SyncCompleteCallback, SyncFailCallback)">Sync</a>
+
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelTestingPage"
+		   data-iconpos="notext">Menu</a>
+
+		<h3>Testing Page - Developers use only!!!</h3>
+	</div>
+	<div data-role="content">
+		<h4 color="red">!!! DEVELOPER TESTING ONLY !!!</h4>
+
+		<div id='testingButtons'>
+			<input type="button" onclick="attemptToSyncLSAndDB()" value="attemptToSyncLSAndDB">
+			<input type="button" onclick="testShowLocalStorage('testingOutput')" value="show Local Storage">
+			<input type="button" onclick="attemptToSyncLSAndDB(SyncCompleteCallback, SyncFailCallback)"
+				   value="test 2-way Sync!">
+			<input type="button" onclick="window.localStorage.clear()" value="Clear LS">
+			<input type="button" onclick="clearLocalHistoryList()" value="Clear LS History">
+
+
+		</div>
+		<div id="ajax-loading"></div>
+		<div id='testingOutput'></div>
+	</div>
+
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#MainMenu" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to users
+			menu</a>
+
+
+	</div>
+</div>
+
+
+<!-- currentShipmentPage PAGE ==============================================-->
+<div data-role="page" id="currentShipmentPage" data-theme="d">
+	<div data-role="panel" id="navpanelCShipment" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelCShipment"
+		   data-iconpos="notext">Menu</a>
+
+		<h3>Current Shipment</h3>
+	</div>
+	<div data-role="content">
+		<h4>Click on a button to access, export XML, or delete an event</h4>
+
+		<div id='currentSamples'></div>
+	</div>
+	<div style="max-width: 400px;" id="deleteEventDialog" data-role="popup" data-theme="d" data-overlay-theme="d"
+		 data-dismissible="false">
+		<div data-role="header" data-theme="a">
+			<h1>Delete</h1>
+		</div>
+		<div id="dialogDeleteEvent" class="ui-content" role="main">
+		</div>
+
+	</div>
+
+	<div style="max-width: 400px;" id="authenticateDialog" data-role="popup" data-theme="d" data-overlay-theme="d"
+		 data-dismissible="false">
+		<div data-role="header" data-theme="a">
+			<h1>Authenticate</h1>
+		</div>
+		<div id="dialogAuthenticate" class="ui-content" role="main">
+		</div>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#MainMenu" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to users
+			menu</a>
+	</div>
+</div>
+
+<!-- currentShipmentContainer PAGE ========================================-->
+<div data-role="page" id="currentShipmentContainer" data-theme="d">
+	<div data-role="panel" id="navpanelCSC" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" id="currentShipmentContainerHeader" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelCSC"
+		   data-iconpos="notext">Menu</a>
+
+		<h1>Modify Event</h1>
+	</div>
+	<div data-role="content">
+		<div id="currentShipmentSamples"></div>
+	</div>
+	<div style="max-width: 400px;" id="deleteDialog" data-role="popup" data-theme="d" data-overlay-theme="d"
+		 data-dismissible="false">
+		<div data-role="header" data-theme="a">
+			<h1>Delete</h1>
+		</div>
+		<div id="dialogDeleteSamples" class="ui-content" role="main">
+		</div>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#currentShipmentPage" class="ui-btn-lef ui-btn-inline" data-icon="arrow-l" data-role="button">Back to
+			Events</a>
+	</div>
+</div>
+
+<!-- openXMLPage ========================================================-->
+<div data-role="page" id='openXMLPage' data-theme="d">
+	<div data-role="panel" id="navpanelOpenXML" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" id='openXMLHeader' data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelOpenXML" data-iconpos="notext">Menu</a>
+
+		<h3>Open XML</h3></div>
+	<div data-role="content" id='openXMLContent'>
+		Select an XML file generated by SED_WE:
+		<input type="file" id="fileXML">
+	</div>
+	<!-- content-->
+	<div data-role="content" id="openXMLMessageToUser"></div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#historyPage" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to History
+			and Review</a>
+	</div>
+</div>
+<!--    openXMLPage-->
+
+<!-- reportPage PAGE ========================================================-->
+<div data-role="page" id='reportPage' data-theme="d">
+	<div data-role="panel" id="navpanelReport" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" id='reportHeader' data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelReport" data-iconpos="notext">Menu</a>
+
+		<h3>Report</h3></div>
+	<div data-role="content" id='reportContent'>
+		<table data-role="table" class="ui-responsive" data-mode="columntoggle" id="reportTable"
+			   data-column-btn-text="Click to hide/show columns"></table>
+	</div>
+	<!-- content-->
+</div>
+<!--    reportPage-->
+
+<!-- newEvent PAGE ========================================================-->
+<div data-role="page" id="newEvent" data-theme="d">
+	<div data-role="panel" id="navpanelSample" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelSample" data-iconpos="notext">Menu</a>
+		<!--div class="ui-bar ui-bar-d"  data-position="fixed" data-tap-toggle="false"-->
+		<!--h3>Add new sample</h3-->
+		<h3>Create a new event</h3>
+	</div>
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true">
+			<li data-role="list-divider">Select the sampling method</li>
+			<li><a href="#page2" id="suspendedTitle" name="sampleType"
+				   onClick="setTitle(this.name,'Suspended Sediment'); fillSelect ('Suspended Sediment'); setCorrespondingOptions(this.name)">Suspended
+				Sediment</a></li>
+			<li><a href="#page2" id="bottomTitle" name="sampleType"
+				   onClick="setTitle(this.name,'Bottom Material'); fillSelect ('Bottom Material'); setCorrespondingOptions(this.name)">Bottom
+				Material</a></li>
+			<li><a href="#page2" id="bedloadTitle" name="sampleType"
+				   onClick="setTitle(this.name,'Bedload'); fillSelect ('Bedload'); setCorrespondingOptions(this.name)">Bedload</a>
+			</li>
+		</ul>
+	</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#" class="ui-btn-lef" data-icon="arrow-l" data-direction="reverse" data-rel="back">Back</a>
+	</div>
+</div>
+
+<!-- page 2 PAGE ============================================================-->
+<div data-role="page" id="page2" data-theme="d">
+	<div data-role="panel" id="navpanelPage2" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelPage2" data-iconpos="notext">Menu</a>
+
+		<h2 id="page2SubHeader"></h2>
+	</div>
+	<div data-role="content">
+		<form id="sampleProperties">
+			<div class="ui-field-contain">
+				<label for="station">Station:</label>
+				<select name="station" id="station" onBlur="save_data(this.id,this.value)" data-mini="true" required
+						autofocus>
+				</select></div>
+			<div class="hideFromObserver">
+
+				<div class="ui-field-contain">
+					<label for="sampleMedium">Sample Medium:</label>
+					<select name="sampleMedium" id="sampleMedium" data-mini="true"
+							onBlur="save_data(this.name,this.value)">
+					</select>
+				</div>
+			</div>
+			<div class="ui-field-contain">
+				<label for="evtDate">Begin Date (for most):</label>
+				<input name="evtDate" id="evtDate" type="text" readonly onBlur="save_data(this.name,this.value)">
+			</div>
+
+			<div class="ui-field-contain">
+				<label for='EVENT'>Hydrologic Event (for most):</label>
+				<select name="EVENT" id="EVENT" data-mini="true" onBlur="save_data(this.name,this.value)">
+					<option value="1">1- Drought</option>
+					<option value="2">2- Spill</option>
+					<option value="3">3- Regulated Flow</option>
+					<option value="4">4- Snowmelt</option>
+					<option value="5">5- Earthquake</option>
+					<option value="6">6- Hurricane</option>
+					<option value="7">7- Flood</option>
+					<option value="8">8- Volcanic activity</option>
+					<option value="9" selected>9- Routine Sample</option>
+					<option value="A">A- Spring breakup</option>
+					<option value="B">B- Under ice cover</option>
+					<option value="C">C- Glacial lake outbreak</option>
+					<option value="D">D- Mudflow</option>
+					<option value="E">E- Tidal action</option>
+					<option value="F">F- Fire, affected by fire prior sampling</option>
+					<option value="H">H- Dambreak</option>
+					<option value="J">J- Storm</option>
+					<option value="K">K- Backwater</option>
+					<option value="X">X- Not applicable</option>
+				</select>
+			</div>
+			<hr>
+
+			<div class="ui-field-contain">
+				<legend><h4>Add a group of single-container samples or sets of multi-container samples:</h4></legend>
+				<div class="containing-element ui-field-contain">
+					<label>Select an option:</label>
+					<select id="singleOrMulti" name="singleOrMulti" data-mini="true"
+							onChange="updateLabel(this.id);save_data(this.id,this.value);showHideAverage();"
+							onBlur="updateLabel(this.id);save_data(this.id,this.value);showHideAverage();" autofocus>
+						<option selected="" value="single">Single-container samples</option>
+						<option value="multi">Multi-container sets container</option>
+					</select></div>
+			</div>
+
+
+			<div class="ui-field-contain">
+				<label class="containerLabel" for="setQuantity">Number of Containers</label>
+				<label class="setLabel" for="setQuantity">Select number of Sets</label>
+				<input type="number" min="1" value="1" max="40" data-mini="true" id="setQuantity" name="setQuantity"
+					   onBlur="showHideAverage();save_data(this.name, this.value)"
+					   onChange="showHideAverage();save_data(this.name,this.value)" autofocus/>
+			</div>
+
+			<div class="ui-field-contain multiMoreThanOne">
+				<legend>Average the Representational Measures of These Sets?</legend>
+				<div class="containing-element ui-field-contain">
+					<label>Event average:</label>
+					<select id="averageRep" name="averageRep" data-mini="true"
+							onChange="save_data(this.id,this.value)" onBlur="save_data(this.id,this.value)" autofocus>
+						<option value="Y">Yes</option>
+						<option selected="" value="N">No</option>
+					</select></div>
+			</div>
+
+		</form>
+
+	</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#" class="ui-btn-lef" data-icon="arrow-l" data-direction="reverse" data-rel="back">Back</a>
+		<a id="addGroupOrSetButton" data-icon="arrow-r" class="ui-btn-right" data-role="button">Add group or set</a>
+	</div>
+
+
+</div>
+
+<!-- sampleParametersPage PAGE =======================================================-->
+<div data-role="page" id="sampleParametersPage" data-theme="d">
+	<div data-role="panel" id="navpanelSampleParam" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelSampleParam"
+		   data-iconpos="notext">Menu</a>
+
+		<h1 id="sampleParametersPageHeader"></h1>
+	</div>
+
+	<div data-role="content">
+		<!-- ...................................................
+				Sample Parameters Form Starts
+			   ................................................... -->
+		<form id="sampleParameters">
+			<h2>Sample Information</h2>
+
+			<div class="ui-field-contain mandatory">
+				<label for="beginDate">Sample Begin Date:</label>
+				<input id="beginDate" name="beginDate" type="text" data-mini="true"
+					   onChange="save_data(this.name,this.value)" required/>
+			</div>
+
+			<div class="ui-field-contain mandatory">
+				<label for="beginTime">Sample Begin Time:</label>
+				<input id="beginTime" name="beginTime" type="text" data-mini="true"
+					   onChange="save_data(this.name,this.value)" required>
+			</div>
+
+			<div class="hideFromObserver ui-field-contain">
+				<label for='timeDatum'>Time Datum:</label>
+				<select name="timeDatum" id="timeDatum" data-mini="true" onChange="save_data(this.name,this.value)">
+					<option value="SITEFILE">use default from SITEFILE</option>
+					<option value="AST">AST</option>
+					<option value="ADT">ADT</option>
+					<option value="EST">EST</option>
+					<option value="CST">CST</option>
+					<option value="CDT">CDT</option>
+					<option value="MST">MST</option>
+					<option value="MDT">MDT</option>
+					<option value="PST">PST</option>
+					<option value="PDT">PDT</option>
+					<option value="AKST">AKST</option>
+					<option value="AKDT">AKDT</option>
+					<option value="HST">HST</option>
+					<option value="HDT">HDT</option>
+				</select>
+			</div>
+
+			<div class="hideFromObserver ui-field-contain">
+				<!--div class="ui-field-contain"-->
+				<label>Possible Add-on analyses for this sample:</label>
+				<fieldset data-role="controlgroup">
+					<!--legend id="possibleAddon"><script>console.log(">>>en script...");getGroupCheckboxValues('analysis',false,1)</script></legend-->
+					<legend id="possibleAddon"></legend>
+
+					<label id="fullSizeFractionlb" for="addOnAnalysisZ">(Z) Full size fraction</label>
+					<input type="checkbox" id="addOnAnalysisZ" value="Z" data-mini="true"
+						   onChange="chkBoxbyName('addOnAnalysis')"/>
+					<label id="sandFineBreaklb" for="addOnAnalysisSF">(SF) Sand fine break</label>
+					<input type="checkbox" id="addOnAnalysisSF" value="SF" data-mini="true"
+						   onChange="chkBoxbyName('addOnAnalysis')"/>
+					<label id="sandlb" for="addOnAnalysisSA">(SA) Sand Analysis</label>
+					<input type="checkbox" id="addOnAnalysisSA" value="SA" data-mini="true"
+						   onChange="chkBoxbyName('addOnAnalysis')"/>
+					<label id="lossOnIgnitionlb" for="addOnAnalysisLOI">(LOI) Loss on Ignition</label>
+					<input type="checkbox" id="addOnAnalysisLOI" value="LOI" data-mini="true"
+						   onChange="chkBoxbyName('addOnAnalysis')"/>
+				</fieldset>
+				<!--/div-->
+			</div>
+
+			<div class="hideFromObserver ui-field-contain">
+				<label for="brokenContainer">Is this sample record for a broken container?:</label>
+				<select id="brokenContainer" name="brokenContainer" data-mini="true"
+						onChange="save_data(this.id,this.value)" onBlur="save_data(this.id,this.value)" autofocus>
+					<option selected="" value="No">No</option>
+					<option value="Yes">Yes, container is broken</option>
+				</select>
+			</div>
+
+
+			<div class="hideFromObserver ui-field-contain">
+				<label for="collectingAgency">Collecting Agency:</label>
+				<select name="collectingAgency" id="collectingAgency" data-mini="true"
+						onChange="save_data(this.name,this.value)">
+					<option value="USGS-WRD" selected>USGS-WRD</option>
+					<option value="USGS-GD">USGS-GD</option>
+					<option value="observer">Observer</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
+
+			<div class="hideFromObserver ui-field-contain">
+				<label for="collectorInitials">Initial of the person(s) who collected sample:</label>
+				<input type="text" name="collectorInitials" id="collectorInitials"
+					   onChange="save_data(this.name,this.value)" placeholder="Max of 15 characters"/>
+			</div>
+			<div class="hideFromObserver ui-field-contain">
+				<label for="containerNum">Container Number:</label>
+				<input type="number" min="00000000" max="99999999" name="containerNum" id="containerNum"
+					   onChange="save_data(this.name,this.value)" placeholder="Must be between 1 and 40"/>
+			</div>
+			<div class="hideFromObserver ui-field-contain">
+				<label>Hydrologic Condition (HSTAT):</label>
+				<select name="HSTAT" id="HSTAT" data-mini="true" onChange="save_data(this.name,this.value)">
+					<option value="4">4- stable, low stage</option>
+					<option value="5">5- falling stage</option>
+					<option value="6">6- stable, high stage</option>
+					<option value="7">7- peak stage</option>
+					<option value="8">8- rising state</option>
+					<option value="9" selected>9- stable, normal stage</option>
+					<option value="A">A- Not Determined</option>
+					<option value="X">X- Not applicable</option>
+				</select>
+			</div>
+			<div class="hideFromObserver ui-field-contain">
+				<label for='EVENT'>Hydrologic event (EVENT):</label>
+				<select name="EVENT" id="EVENT" data-mini="true" onChange="save_data(this.name,this.value)">
+					<option value="1">1- Drought</option>
+					<option value="2">2- Spill</option>
+					<option value="3">3- Regulated Flow</option>
+					<option value="4">4- Snowmelt</option>
+					<option value="5">5- Earthquake</option>
+					<option value="6">6- Hurricane</option>
+					<option value="7">7- Flood</option>
+					<option value="8">8- Volcanic activity</option>
+					<option value="9" selected>9- Routine Sample</option>
+					<option value="A">A- Spring breakup</option>
+					<option value="B">B- Under ice cover</option>
+					<option value="C">C- Glacial lake outbreak</option>
+					<option value="D">D- Mudflow</option>
+					<option value="E">E- Tidal action</option>
+					<option value="F">F- Fire, affected by fire prior sampling</option>
+					<option value="H">H- Dambreak</option>
+					<option value="J">J- Storm</option>
+					<option value="K">K- Backwater</option>
+					<option value="X">X- Not applicable</option>
+				</select>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="STYPE">Sample type (STYPE in QWDATA):</label>
+				<select name="STYPE" id="STYPE" data-mini="true" onChange="save_data(this.name,this.value)">
+					<option value="1">1- Spike</option>
+					<option value="2">2- Blank</option>
+					<option value="3">3- Reference</option>
+					<option value="4">4- Blind</option>
+					<option value="5">5- Duplicate</option>
+					<option value="6">6- Reference Material</option>
+					<option value="7">7- Replicate</option>
+					<option value="8">8- Spike solution</option>
+					<option value="9" selected>9- Regular</option>
+					<option value="A">A- Not determined</option>
+					<option value="B">B- Other QA</option>
+					<option value="H">H- Composite</option>
+				</select>
+			</div>
+
+			<div class="hideFromObserver ui-field-contain">
+				<label for="ASTAT">Analysis status (ASTAT):</label>
+				<select name="ASTAT" id="ASTAT" data-mini="true" onChange="save_data(this.name,this.value)">
+					<option value="U">U- Unrestricted</option>
+					<option value="I">I- Internal use only</option>
+					<option value="P">P- Propietary</option>
+				</select>
+			</div>
+			<div class="hideFromObserver mandatory ui-field-contain">
+				<label for="P71999">Sample Purpose (P71999):</label>
+				<select name="P71999" id="P71999" data-mini="true" onChange="save_data(this.name,this.value)">
+					<option value="10">10- Routine</option>
+					<option value="15">15- NAWQA, National Quality Assesment</option>
+					<option value="20">20- NASQAN</option>
+					<option value="25">25- NMN, National Monitoring Network</option>
+					<option value="30">30- Benchmark</option>
+					<option value="35">35- RASA, Regional System Aquifier Analysis</option>
+					<option value="40">40- SW Network</option>
+					<option value="55">50- GW Network</option>
+					<option value="60">60- Lowflow network</option>
+					<option value="70">70- Highflow network</option>
+					<option value="80">80- Sampling protocol(Time)(SP)</option>
+					<option value="90">09- Snow survey</option>
+					<option value="100">100- Mt. St. Helen</option>
+					<option value="110">110- Seepage Study</option>
+					<option value="120">120- Irrigation effects</option>
+					<option value="130">130- Recharge</option>
+					<option value="140">140- Injection</option>
+					<option value="150">150- Bank erodibility</option>
+					<option value="160">160- National Blank and spike program</option>
+					<option value="170">170- Quality assurance</option>
+					<option value="180">180- Cross-section variation</option>
+					<option value="190">190- Gorund-water/Surface-water interaction study</option>
+				</select>
+			</div>
+
+			<div class="mandatory ui-field-contain">
+				<label for="P82398">Sampling Method (P82398):</label>
+				<select name="P82398" id="P82398" data-mini="true" onChange="save_data(this.name,this.value)">
+				</select>
+			</div>
+
+			<div class="mandatory ui-field-contain">
+				<label for="P84164">Sampler type (P84164):</label>
+				<select name="P84164" id="P84164" data-mini="true" onChange="save_data(this.name,this.value)">
+				</select>
+			</div>
+
+			<div class="hideFromObserver">
+
+				<label for="P00009">Location in cross section, feet from <strong>left</strong> bank looking downstream
+					(P00009):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<input type="text" class="number" name="P00009" id="P00009" data-mini="true"
+							   placeholder="Feet from left bank " onChange="save_data(this.name,this.value)"/></div>
+					<div class="ui-block-b">
+						<select name="P00009R" id="P00009R" data-mini="true" onChange="save_data(this.name,this.value)">
+							<option value=" ">Remark...</option>
+							<option value="<">&lt;</option>
+							<option value=">">&gt;</option>
+							<option value="E">E</option>
+							<option value="M">M</option>
+							<option value="N">N</option>
+							<option value="A">A</option>
+							<option value="V">V</option>
+							<option value="S">S</option>
+							<option value="U">U</option>
+						</select>
+					</div>
+				</div>
+				<label for="P72103">Location in cross section, feet from <strong>right</strong> bank looking downstream
+					(P72103):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<input type="number" name="P72103" id="P72103" data-mini="true"
+							   placeholder="Feet from right bank" onChange="save_data(this.name,this.value)"/></div>
+					<div class="ui-block-b">
+						<select name="P72103R" id="P72103R" data-mini="true" onChange="save_data(this.name,this.value)">
+							<option value=" ">Remark...</option>
+							<option value="<">&lt;</option>
+							<option value=">">&gt;</option>
+							<option value="E">E</option>
+							<option value="M">M</option>
+							<option value="N">N</option>
+							<option value="A">A</option>
+							<option value="V">V</option>
+							<option value="S">S</option>
+							<option value="U">U</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="ui-field-contain">
+					<label for="P00003">Sampling Depth, in feet (P00003):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<input class="number" type="text" name="P00003" id="P00003" data-mini="true" placeholder="in feet"
+								   onChange="save_data(this.name,this.value)"></div>
+						<div class="ui-block-b">
+							<select name="P00003R" id="P00003R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Remark...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<!-- hideFromObserver -->
+
+				<div class="ui-field-contain">
+					<label for="P00004">Stream width, feet (P00004):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<input class="number" type="text" name="P00004" id="P00004" data-mini="true" placeholder="in feet"
+								   onChange="save_data(this.name,this.value)"></div>
+						<div class="ui-block-b">
+							<select name="P00004R" id="P00004R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Remark...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="ui-field-contain">
+					<label for="P00064">Mean depth of stream, feet (P00064):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<input class="number" type="text" name="P00064" id="P00064" data-mini="true" placeholder="in feet"
+								   onChange="save_data(this.name,this.value)"></div>
+						<div class="ui-block-b">
+							<select name="P00064R" id="P00064R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Remark...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<!-- el de abajo -->
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="M2Lab">Field sample comment, 850 chars max:</label>
+				<textarea placeholder="Message to laboratory" name="M2Lab" rows="2" id="M2Lab" maxlength="850"
+						  onChange="save_data(this.name,this.value)"></textarea>
+			</div>
+		</form>
+	</div>
+	<!-- data role content -->
+
+
+	<div data-role="content">
+		<form id="sampleParameters2">
+
+
+			<h2>Field Parameters</h2>
+
+			<p>Parameters marked with Important (+) must be added for sediment samples. You can add them later, in
+				QWDATA</p>
+
+			<div class="hideFromObserver">
+				<div class="ui-field-contain veryImportant">
+					<label for="P00061">Instantaneous discharge, cfs (P00061):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input class="number" type="text" name="P00061" id="P00061" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP00061" href="#dischargePopup"
+																	 data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-corner-all ui-btn-icon-left ui-btn-inline"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="dischargePopup" data-overlay-theme="d"
+						 class="ui-content hideFromObserver"
+						 data-dismissible="false" style="min-width:250px;" data-theme="c">
+						<!--h3>Discharge Options</h3-->
+						<div data-role="header" data-theme="d"><h1>Discharge Options</h1></div>
+						<div role="main" class="ui-content">
+							<div class="ui-grid-a">
+								<div class="ui-block-a" style="width:40%"><label for="P00061R">Remark:</label></div>
+								<div class="ui-block-b" style="width:60%">
+									<select name="P00061R" id="P00061R" data-mini="true"
+											onChange="save_data(this.name,this.value)">
+										<option value=" ">Select...</option>
+										<option value="<">&lt;</option>
+										<option value=">">&gt;</option>
+										<option value="E">E</option>
+										<option value="M">M</option>
+										<option value="N">N</option>
+										<option value="A">A</option>
+										<option value="V">V</option>
+										<option value="S">S</option>
+										<option value="U">U</option>
+									</select>
+								</div>
+								<div class="ui-block-a" style="width:40%"><label for="P00061M">Method:</label></div>
+								<div class="ui-block-b" style="width:60%"><select name="P00061M" id="P00061M"
+																				  data-mini="true"
+																				  onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="QEST">Q-EST</option>
+									<option value="QADCP">QADCP</option>
+									<option value="QFLUM">QFLUM</option>
+									<option value="QIDIR">QIDIR</option>
+									<option value="QSCMM">QSCMM</option>
+									<option value="QSLPQ">QSLPQ</option>
+									<option value="QSTGQ">QSTGQ</option>
+									<option value="QTRAC">QTRAC</option>
+									<option value="QUNSP">QUNSP</option>
+									<option value="QVELO">QVELO</option>
+									<option value="QVOLM">QVOLM</option>
+									<option value="QWEIR">QWEIR</option>
+								</select>
+								</div>
+								<a id="P00061back" class="ui-btn ui-icon-back ui-btn-icon-left ui-btn-inline ui-shadow"
+								   data-mini="true" href="#" data-rel="back" data-inline="true">Go Back</a>
+							</div>
+						</div>
+					</div>
+					<!--popup-->
+				</div>
+				<!-- end div for P00061 -->
+			</div>
+			<!--hide class-->
+
+
+			<div class="ui-field-contain veryImportant">
+				<label for="P00010">Water Temperature, &deg;C (P00010):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><input type="text" name="P00010" id="P00010" data-mini="true"
+												   onChange="save_data(this.name,this.value)"/></div>
+					<div class="hideFromObserver ui-block-b "><a id="popupP00010" href="#waterPopup" data-rel="popup"
+																 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																 data-mini="true">Options</a></div>
+				</div>
+
+				<div data-role="popup" id="waterPopup" class="ui-content hideFromObserver" data-dismissible="false"
+					 style="min-width:250px;" data-theme="c">
+					<h3>Water Temp. Options</h3>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a" style="width:40%"><label for="P00010R"
+																		 style="margin-top: 0px;">Remark:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P00010R" id="P00010R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select>
+						</div>
+						<div class="ui-block-a" style="width:40%"><label for="P00010M">Method:</label></div>
+						<div class="ui-block-b" style="width:60%"><select name="P00010M" id="P00010M" data-mini="true"
+																		  onChange="save_data(this.name,this.value)">
+							<option value=" ">Select...</option>
+							<option value="TMH01">THM01</option>
+							<option value="TMH02">THM02</option>
+							<option value="TMH03">THM03</option>
+						</select>
+						</div>
+						<div class="ui-block-a" style="width:40%"><label for="P00010N">Null qualifier:</label></div>
+						<div class="ui-block-b" style="width:60%"><select name="P00010N" id="P00010N" data-mini="true"
+																		  onChange="save_data(this.name,this.value)">
+							<option value=" ">Select...</option>
+							<option value="a">a- Planned measurement was not made</option>
+							<option value="b">b- Sample broken/spilled in shipment</option>
+							<option value="e">e- Required equipment not functional or available</option>
+							<option value="f">f- Sample discarded: improper filter used</option>
+							<option value="x">x- Result failed, quality assurance review</option>
+						</select>
+						</div>
+						<a id="P00010back" class="ui-btn ui-icon-back ui-btn-icon-left " data-mini="true" href="#"
+						   data-rel="back">Go Back</a>
+					</div>
+					<!--grid a-->
+				</div>
+				<!--popup-->
+			</div>
+			<!--field contain-->
+
+			<div class="hideFromObserver">
+				<div class="ui-field-contain veryImportant">
+					<label for="P00063">Number of sampling points (P00063):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<input class="number" type="text" name="P00063" id="P00063" data-mini="true"
+								   onChange="save_data(this.name,this.value)"/>
+						</div>
+						<div class="ui-block-b">
+							<select name="P00063R" id="P00063R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Remark...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="ui-field-contain">
+					<label for="P00020">Air Temperature, &deg;C (P00020):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input type="text" name="P00020" id="P00020" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP00020" href="#airPopup" data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="airPopup" class="ui-content hideFromObserver" data-dismissible="false"
+						 style="min-width:250px;" data-theme="c">
+						<h3>Air Temperature Options</h3>
+
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="width:40%"><label for="P00020R">Remark:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P00020R" id="P00020R" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="<">&lt;</option>
+									<option value=">">&gt;</option>
+									<option value="E">E</option>
+									<option value="M">M</option>
+									<option value="N">N</option>
+									<option value="A">A</option>
+									<option value="V">V</option>
+									<option value="S">S</option>
+									<option value="U">U</option>
+								</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P00020M">Method:</label></div>
+							<div class="ui-block-b" style="width:60%"><select name="P00020M" id="P00020M"
+																			  data-mini="true"
+																			  onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="THM04">THM04</option>
+								<option value="THM05">THM05</option>
+							</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P00020N">Null qualifier:</label></div>
+							<div class="ui-block-b" style="width:60%"><select name="P00020N" id="P00020N"
+																			  data-mini="true"
+																			  onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="a">a- Planned measurement was not made</option>
+								<option value="b">b- Sample broken/spilled in shipment</option>
+								<option value="e">e- Required equipment not functional or available</option>
+								<option value="f">f- Sample discarded: improper filter used</option>
+								<option value="x">x- Result failed, quality assurance review</option>
+							</select>
+							</div>
+							<a id="P00020back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+							   data-rel="back">Go Back</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!--hideFromObserver class ends-->
+
+
+			<div class="ui-field-contain veryImportant ">
+				<label for="P00065">Gage height, feet (P00065):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><input type="text" name="P00065" id="P00065" data-mini="true"
+												   onChange="save_data(this.name,this.value)"/></div>
+					<div class="hideFromObserver ui-block-b "><a id="popupP00065" href="#gagePopup" data-rel="popup"
+																 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																 data-mini="true">Options</a></div>
+				</div>
+
+				<div data-role="popup" id="gagePopup" class="ui-content hideFromObserver" data-dismissible="false"
+					 style="min-width:250px;" data-theme="c">
+					<h3>Gage height Options</h3>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a" style="width:40%"><label for="P00065R">Remark:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P00065R" id="P00065R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select>
+						</div>
+						<div class="ui-block-a" style="width:40%"><label for="P00065M">Method:</label></div>
+						<div class="ui-block-b" style="width:60%"><select name="P00065M" id="P00065M" data-mini="true"
+																		  onChange="save_data(this.name,this.value)">
+							<option value=" ">Select...</option>
+							<option value="ACOUS">ACOUS</option>
+							<option value="CLIP">CLIP</option>
+							<option value="CSG">CSG</option>
+							<option value="ETG">ETG</option>
+							<option value="FLOAT">FLOAT</option>
+							<option value="INSD">INSD</option>
+							<option value="MANO">MANO</option>
+							<option value="NCAC">NCAC</option>
+							<option value="NCLZ">NCLZ</option>
+							<option value="NCRD">NCRD</option>
+							<option value="NTRAN">NTRAN</option>
+							<option value="OTSD">OTSD</option>
+							<option value="RP">RP</option>
+							<option value="STAFF">STAFF</option>
+							<option value="STRAN">STRAN</option>
+							<option value="WWG">WWG</option>
+						</select>
+						</div>
+						<a id="P00065back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+						   data-rel="back">Go Back</a>
+					</div>
+				</div>
+
+			</div>
+			<!--field contain-->
+
+
+			<div class="hideFromObserver">
+				<div class="ui-field-contain">
+					<label for="P00095">Specific conductance, &micro;S/cm at 25&deg;C (P00095):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input type="text" name="P00095" id="P00095" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP00095" href="#specificPopup"
+																	 data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="specificPopup" class="ui-content hideFromObserver"
+						 data-dismissible="false"
+						 style="min-width:250px;" data-theme="c">
+						<h3>Specific Conductance Options</h3>
+
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="width:40%"><label for="P00095R">Remark:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P00095R" id="P00095R" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="<">&lt;</option>
+									<option value=">">&gt;</option>
+									<option value="E">E</option>
+									<option value="M">M</option>
+									<option value="N">N</option>
+									<option value="A">A</option>
+									<option value="V">V</option>
+									<option value="S">S</option>
+									<option value="U">U</option>
+								</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P00095M">Method:</label></div>
+							<div class="ui-block-b" style="width:60%"><select name="P00095M" id="P00095M"
+																			  data-mini="true"
+																			  onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="SC001">SC001</option>
+							</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P00095N">Null qualifier:</label></div>
+							<div class="ui-block-b" style="width:60%"><select name="P00095N" id="P00095N"
+																			  data-mini="true"
+																			  onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="a">a- Planned measurement was not made</option>
+								<option value="b">b- Sample broken/spilled in shipment</option>
+								<option value="e">e- Required equipment not functional or available</option>
+								<option value="f">f- Sample discarded: improper filter used</option>
+								<option value="x">x- Result failed, quality assurance review</option>
+							</select>
+							</div>
+							<a id="P00095back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+							   data-rel="back">Go Back</a>
+						</div>
+					</div>
+				</div>
+				<!--field contain -->
+
+				<div class="ui-field-contain veryImportant">
+					<label for="P63675">Turbidity, NTU, 400-600 nm, 90 &plusmn;30&deg; (P63675):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input type="text" name="P63675" id="P63675" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP63675" href="#turNTUPopup"
+																	 data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="turNTUPopup" class="ui-content hideFromObserver" data-dismissible="false"
+						 style="min-width:250px;" data-theme="c">
+						<h3>Turbidity NTU Options</h3>
+
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="width:40%"><label for="P63675R">Remark:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63675R" id="P63675R" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="<">&lt;</option>
+									<option value=">">&gt;</option>
+									<option value="E">E</option>
+									<option value="M">M</option>
+									<option value="N">N</option>
+									<option value="A">A</option>
+									<option value="V">V</option>
+									<option value="S">S</option>
+									<option value="U">U</option>
+								</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P63675M">Method:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63675M" id="P63675M" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="1">TS028</option>
+									<option value="2">TS088</option>
+									<option value="3">TS089</option>
+									<option value="4">TS093</option>
+									<option value="1">TS094</option>
+									<option value="2">TS095</option>
+									<option value="1">TS096</option>
+									<option value="2">TS097</option>
+									<option value="3">TS099</option>
+									<option value="3">TS102</option>
+									<option value="1">TS103</option>
+									<option value="2">TS104</option>
+									<option value="3">TS105</option>
+									<option value="4">TS106</option>
+									<option value="1">TS108</option>
+									<option value="2">TS109</option>
+									<option value="3">TS110</option>
+									<option value="4">TS111</option>
+									<option value="1">TS112</option>
+									<option value="2">TS113</option>
+									<option value="3">TS114</option>
+									<option value="4">TS118</option>
+									<option value="1">TS120</option>
+									<option value="2">TS121</option>
+									<option value="3">TS122</option>
+									<option value="4">TS124</option>
+									<option value="1">TS126</option>
+									<option value="2">TS127</option>
+									<option value="3">TS128</option>
+									<option value="4">TS130</option>
+									<option value="1">TS131</option>
+									<option value="2">TS132</option>
+									<option value="3">TS133</option>
+									<option value="4">TS134</option>
+									<option value="1">TS135</option>
+									<option value="2">TS136</option>
+									<option value="3">TS137</option>
+									<option value="4">TS138</option>
+								</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P63675N">Null qualifier:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63675N" id="P63675N" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="a">a- Planned measurement was not made</option>
+									<option value="b">b- Sample broken/spilled in shipment</option>
+									<option value="e">e- Required equipment not functional or available</option>
+									<option value="f">f- Sample discarded: improper filter used</option>
+									<option value="x">x- Result failed, quality assurance review</option>
+								</select>
+							</div>
+							<a id="P63675back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+							   data-rel="back">Go Back</a>
+						</div>
+					</div>
+				</div>
+				<!--field contain -->
+
+				<div class="ui-field-contain veryImportant">
+					<label for="P63676">Turbidity, NTRU, 400-600 nm, multile angles (P63676):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input type="text" name="P63676" id="P63676" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP63676" href="#turNTRUPopup"
+																	 data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="turNTRUPopup" class="ui-content hideFromObserver"
+						 data-dismissible="false"
+						 style="min-width:250px;" data-theme="c">
+						<h3>Turbidity NTRU Options</h3>
+
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="width:40%"><label for="P63676R">Remark:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63676R" id="P63676R" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="<">&lt;</option>
+									<option value=">">&gt;</option>
+									<option value="E">E</option>
+									<option value="M">M</option>
+									<option value="N">N</option>
+									<option value="A">A</option>
+									<option value="V">V</option>
+									<option value="S">S</option>
+									<option value="U">U</option>
+								</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P63676M">Method:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63676M" id="P63676M" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="TS027">TS027</option>
+									<option value="TS090">TS090</option>
+									<option value="TS091">TS091</option>
+									<option value="TS092">TS092</option>
+									<option value="TS098">TS098</option>
+									<option value="TS100">TS100</option>
+									<option value="TS101">TS101</option>
+									<option value="TS107">TS107</option>
+									<option value="TS115">TS115</option>
+									<option value="TS116">TS116</option>
+									<option value="TS117">TS117</option>
+									<option value="TS119">TS119</option>
+									<option value="TS123">TS123</option>
+									<option value="TS125">TS125</option>
+									<option value="TS129">TS129</option>
+									<option value="TS141">TS141</option>
+								</select></div>
+							<div class="ui-block-a" style="width:40%"><label for="P63676N">Null qualifier:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63676N" id="P63676N" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="a">a- Planned measurement was not made</option>
+									<option value="b">b- Sample broken/spilled in shipment</option>
+									<option value="e">e- Required equipment not functional or available</option>
+									<option value="f">f- Sample discarded: improper filter used</option>
+									<option value="x">x- Result failed, quality assurance review</option>
+								</select></div>
+							<a id="P63676back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+							   data-rel="back">Go Back</a>
+						</div>
+					</div>
+				</div>
+				<!-- field contain -->
+
+				<div class="ui-field-contain veryImportant">
+					<label for="P63680">Turbidity, FNU, 780-900 nm, 90 &plusmn;2.5&deg;:</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input type="text" name="P63680" id="P63680" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP63680" href="#turFNUPopup"
+																	 data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-btn-icon-left ui-btn-inline ui-corner-all"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="turFNUPopup" class="ui-content hideFromObserver" data-dismissible="false"
+						 style="min-width:250px;" data-theme="c">
+						<h3>Turbidity FNU Options</h3>
+
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="width:40%"><label for="P63680R">Remark:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63680R" id="P63680R" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="<">&lt;</option>
+									<option value=">">&gt;</option>
+									<option value="E">E</option>
+									<option value="M">M</option>
+									<option value="N">N</option>
+									<option value="A">A</option>
+									<option value="V">V</option>
+									<option value="S">S</option>
+									<option value="U">U</option>
+								</select></div>
+							<div class="ui-block-a" style="width:40%"><label for="P63680M">Method:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63680M" id="P63680M" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="1">method</option>
+									<option value="TS031">TS031</option>
+									<option value="TS032">TS032</option>
+									<option value="TS034">TS034</option>
+									<option value="TS035">TS035</option>
+									<option value="TS036">TS036</option>
+									<option value="TS037">TS037</option>
+									<option value="TS038">TS038</option>
+									<option value="TS040">TS040</option>
+									<option value="TS041">TS041</option>
+									<option value="TS042">TS042</option>
+									<option value="TS043">TS043</option>
+									<option value="TS044">TS044</option>
+									<option value="TS047">TS047</option>
+									<option value="TS048">TS048</option>
+									<option value="TS049">TS049</option>
+									<option value="TS050">TS050</option>
+									<option value="TS053">TS053</option>
+									<option value="TS054">TS054</option>
+									<option value="TS055">TS055</option>
+									<option value="TS056">TS056</option>
+									<option value="TS059">TS059</option>
+									<option value="TS060">TS060</option>
+									<option value="TS061">TS061</option>
+									<option value="TS062">TS062</option>
+									<option value="TS063">TS063</option>
+									<option value="TS064">TS064</option>
+									<option value="TS066">TS066</option>
+									<option value="TS067">TS067</option>
+									<option value="TS068">TS068</option>
+									<option value="TS069">TS069</option>
+									<option value="TS070">TS070</option>
+									<option value="TS071">TS071</option>
+									<option value="TS074">TS074</option>
+									<option value="TS075">TS075</option>
+									<option value="TS076">TS076</option>
+									<option value="TS078">TS078</option>
+									<option value="TS080">TS080</option>
+									<option value="TS081">TS081</option>
+									<option value="TS082">TS082</option>
+									<option value="TS084">TS084</option>
+									<option value="TS085">TS085</option>
+									<option value="TS086">TS086</option>
+									<option value="TS087">TS087</option>
+									<option value="TS145">TS145</option>
+									<option value="TS146">TS146</option>
+									<option value="TS147">TS147</option>
+									<option value="TS148">TS148</option>
+									<option value="TS149">TS149</option>
+									<option value="TS150">TS150</option>
+									<option value="TS151">TS151</option>
+									<option value="TS156">TS156</option>
+								</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P63680N">Null qualifier:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63680N" id="P63680N" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="a">a- Planned measurement was not made</option>
+									<option value="b">b- Sample broken/spilled in shipment</option>
+									<option value="e">e- Required equipment not functional or available</option>
+									<option value="f">f- Sample discarded: improper filter used</option>
+									<option value="x">x- Result failed, quality assurance review</option>
+								</select></div>
+							<a id="P63680back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+							   data-rel="back">Go Back</a>
+						</div>
+					</div>
+				</div>
+				<!-- field contain -->
+
+				<div class="ui-field-contain veryImportant">
+					<label for="P65225">Transparency, transparency tube, cm (P65225):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input type="text" name="P65225" id="P65225" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP65225" href="#transpPopup"
+																	 data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="transpPopup" class="ui-content hideFromObserver" data-dismissible="false"
+						 style="min-width:250px;" data-theme="c">
+						<h3>Transparency Options</h3>
+
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="width:40%"><label for="P65225R">Remark:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P65225R" id="P65225R" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="<">&lt;</option>
+									<option value=">">&gt;</option>
+									<option value="E">E</option>
+									<option value="M">M</option>
+									<option value="N">N</option>
+									<option value="A">A</option>
+									<option value="V">V</option>
+									<option value="S">S</option>
+									<option value="U">U</option>
+								</select></div>
+							<div class="ui-block-a" style="width:40%"><label for="P65225M">Method:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P65225M" id="P65225M" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="TTUBE">TTUBE</option>
+								</select></div>
+							<div class="ui-block-a" style="width:40%"><label for="P65225N">Null qualifier:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P65225N" id="P65225N" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="a">a- Planned measurement was not made</option>
+									<option value="b">b- Sample broken/spilled in shipment</option>
+									<option value="e">e- Required equipment not functional or available</option>
+									<option value="f">f- Sample discarded: improper filter used</option>
+									<option value="x">x- Result failed, quality assurance review</option>
+								</select></div>
+							<a id="P65225back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+							   data-rel="back">Go Back</a>
+						</div>
+					</div>
+				</div>
+				<!-- field contain -->
+
+			</div>
+			<!--hideFromObserver class ends-->
+
+			<div id="bedloadAdditionalFields">
+				<p><strong>Bedload Samples need some Extra Field Parameters.</strong></p>
+
+				<div class="ui-field-contain veryImportant">
+					<label for="P30333">Bag mesh size, bedload sampler, mm (P30333):</label>
+					<input type="number" name="P30333" id="P30333" data-mini="true"
+						   onChange="save_data(this.name,this.value)"/>
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P04117">Tether line used for collecting sample (P04117):</label>
+					<select id="P04117" name="P04117" data-mini="true"
+							onChange="save_data(this.id,this.value)" onBlur="save_data(this.id,this.value)" autofocus>
+						<option selected="" value="0">No</option>
+						<option value="1">Yes</option>
+					</select>
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P04118">Composite samples in cross-sectional bedload measurement (P04118):</label>
+					<input class="number" type="text" name="P04118" id="P04118" data-mini="true"
+						   onChange="save_data(this.name,this.value)"/>
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P04119">Verticals in composite samples (P04119):</label>
+					<input class="number" type="text" name="P04119" id="P04119" data-mini="true"
+						   onChange="save_data(this.name,this.value)"/>
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P04120">Rest time on bed for bedload samples, seconds (P04120):</label>
+					<input type="number" name="P04120" id="P04120" data-mini="true"
+						   onChange="save_data(this.name,this.value)"/>
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P04121">Horizontal width of vertical, feet (P04121):</label>
+					<input type="number" name="P04121" id="P04121" data-mini="true"
+						   onChange="save_data(this.name,this.value)"/>
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P82073">Starting time (P82073):</label>
+					<input type="text" name="P82073" id="P82073" data-mini="true"
+						   onChange="save_data(this.name,this.value)"/>
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P82074">Ending time (P82074):</label>
+					<input type="text" name="P82074" id="P82074" data-mini="true"
+						   onChange="save_data(this.name,this.value)"/>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+	<div id=bagSamplersDiv data-role="content" class="hideFromObserver">
+		<p><strong>For Bag Samplers only<br/>(Such as DH-2, DH96, D-961A, and D-99)</strong></p>
+
+		<form id="bagSamplers">
+			<div class="ui-field-contain">
+				<label for="P72196">Velocity to compute isokinetic transit rate, ft/s (P72196):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><input type="text" name="P72196" id="P72196" data-mini="true"
+												   onChange="save_data(this.name,this.value)"/></div>
+					<div class="hideFromObserver ui-block-b "><a id="popupP72196" href="#velTransPopup" data-rel="popup"
+																 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																 data-mini="true">Options</a></div>
+				</div>
+
+				<div data-role="popup" id="velTransPopup" class="ui-content hideFromObserver" data-dismissible="false"
+					 style="min-width:250px;" data-theme="c">
+					<h3>Velocity Options</h3>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a" style="width:40%"><label for="P72196R">Remark:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72196R" id="P72196R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select></div>
+						<div class="ui-block-a" style="width:40%"><label for="P72196M">Method:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72196M" id="P72196M" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="SADVM">SADVM</option>
+								<option value="UADVM">UADVM</option>
+								<option value="V-EST">V-EST</option>
+								<option value="VADCP">VADCP</option>
+								<option value="VADV">VADV</option>
+								<option value="VELC">VELC</option>
+								<option value="VICE">VICE</option>
+								<option value="VIPAA">VIPAA</option>
+								<option value="VIPYG">VIPYG</option>
+								<option value="VOTT">VOTT</option>
+								<option value="VPAA">VPAA</option>
+								<option value="VPYG">VPYG</option>
+								<option value="VRAD">VRAD</option>
+								<option value="VTIME">VTIME</option>
+								<option value="VTRNS">VTRNS</option>
+								<option value="VULT">VULT</option>
+							</select></div>
+						<div class="ui-block-a" style="width:40%"><label for="P72196N">Null qualifier:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72196N" id="P72196N" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="a">a- Planned measurement was not made</option>
+								<option value="b">b- Sample broken/spilled in shipment</option>
+								<option value="e">e- Required equipment not functional or available</option>
+								<option value="f">f- Sample discarded: improper filter used</option>
+								<option value="x">x- Result failed, quality assurance review</option>
+							</select></div>
+						<a id="P72196back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+						   data-rel="back">Go Back</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="P72217">Duration sampler collected water, secs (P72217):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><input type="text" name="P72217" id="P72217" data-mini="true"
+												   onChange="save_data(this.name,this.value)"/></div>
+					<div class="hideFromObserver ui-block-b "><a id="popupP72217" href="#durationPopup" data-rel="popup"
+																 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																 data-mini="true">Options</a></div>
+				</div>
+
+				<div data-role="popup" id="durationPopup" class="ui-content hideFromObserver" data-dismissible="false"
+					 style="min-width:250px;" data-theme="c">
+					<h3>Duration Options</h3>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a" style="width:40%"><label for="P72217">Remark:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72217R" id="P72217R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select></div>
+						<div class="ui-block-a" style="width:40%"><label for="P72217N">Null qualifier:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72217N" id="P72217N" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="a">a- Planned measurement was not made</option>
+								<option value="b">b- Sample broken/spilled in shipment</option>
+								<option value="e">e- Required equipment not functional or available</option>
+								<option value="f">f- Sample discarded: improper filter used</option>
+								<option value="x">x- Result failed, quality assurance review</option>
+							</select></div>
+						<a id="P72217back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+						   data-rel="back">Go Back</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="P72218">Sample Volume to computer isokinetic intake efficiency, ml (P72218):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><input type="text" name="P72218" id="P72218" data-mini="true"
+												   onChange="save_data(this.name,this.value)"/></div>
+					<div class="hideFromObserver ui-block-b "><a id="popupP72218" href="#intakePopup" data-rel="popup"
+																 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																 data-mini="true">Options</a></div>
+				</div>
+
+				<div data-role="popup" id="intakePopup" class="ui-content hideFromObserver" data-dismissible="false"
+					 style="min-width:250px;" data-theme="c">
+					<h3>Volume Options</h3>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a" style="width:40%"><label for="P72217">Remark:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72218R" id="P72218R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select></div>
+						<div class="ui-block-a" style="width:40%"><label for="P72218N">Null qualifier:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72218N" id="P72218N" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="a">a- Planned measurement was not made</option>
+								<option value="b">b- Sample broken/spilled in shipment</option>
+								<option value="e">e- Required equipment not functional or available</option>
+								<option value="f">f- Sample discarded: improper filter used</option>
+								<option value="x">x- Result failed, quality assurance review</option>
+							</select></div>
+						<a id="P72218back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+						   data-rel="back">Go Back</a>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="ui-field-contain">
+				<fieldset data-type="horizontal" data-role="controlgroup" data-mini="true">
+					<legend>Sampler nozzle material, code (P72219):</legend>
+					<input id="P72219-a" name="P72219" value="1" type="radio" onClick="save_data(this.name,this.value)">
+					<label for="P72219-a">Brass</label>
+					<input id="P72219-b" name="P72219" value="2" type="radio" onClick="save_data(this.name,this.value)">
+					<label for="P72219-b">Plastic</label>
+					<input id="P72219-c" name="P72219" value="3" type="radio" onClick="save_data(this.name,this.value)">
+					<label for="P72219-c">TFE</label>
+					<input id="P72219-d" name="P72219" value="" CHECKED="checked" type="radio"
+						   onClick="save_data(this.name,this.value)">
+					<label for="P72219-d">None</label>
+
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-type="horizontal" data-role="controlgroup" data-mini="true">
+					<legend>Sampler nozzle diameter, code (P72220):</legend>
+					<input id="P72220-a" name="P72220" value="3" type="radio" onClick="save_data(this.name,this.value)">
+					<label for="P72220-a">3/16&quot;</label>
+					<input id="P72220-b" name="P72220" value="4" type="radio" onClick="save_data(this.name,this.value)">
+					<label for="P72220-b">1/4&quot;</label>
+					<input id="P72220-c" name="P72220" value="5" type="radio" onClick="save_data(this.name,this.value)">
+					<label for="P72220-c">5/16&quot;</label>
+					<input id="P72220-d" name="P72220" value="" CHECKED="checked" type="radio"
+						   onClick="save_data(this.name,this.value)">
+					<label for="P72220-d">None</label>
+				</fieldset>
+			</div>
+
+		</form>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false" class="ui-bar">
+		<a id="backToEventButton" href="#" data-icon="arrow-l" class="ui-btn-lef" data-direction="reverse" data-rel="back">Back
+			to Event Properties</a>
+		<a id="priorSampleButton" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-rol="button">Prior Sample</a>
+		<a id="nextSampleButton" data-icon="arrow-r" class="ui-btn-right ui-btn-inline" data-role="button">Next Sample </a>
+	</div>
+</div>
+
+<!-- multiSet PAGE ===============================================================-->
+<div data-role="page" id="multiSet" data-theme="d">
+	<div data-role="panel" id="navpanelMultiSet" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelMultiSet"
+		   data-iconpos="notext">Menu</a>
+
+		<h3>Select a Set</h3>
+	</div>
+	<div data-role="content">
+		<p style="color:red;font-size: smaller" align="right">* indicates set has not been viewed/modified</p>
+		<div id="sampleSets">
+		</div>
+	</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<!--a href="#" data-icon="arrow-l" data-iconpos="left" data-role="button" data-rel="back" data-direction="reverse">Back</a-->
+		<a href="#MainMenu" data-icon="arrow-l" data-iconpos="left" data-role="button">Back to Main Menu</a>
+		<!--<a id="addSampleSet" data-icon="plus" class="ui-btn-right ui-btn-inline" data-role="button">Add Set</a>-->
+		<!--button data-icon="plus" data-iconpos="right" id="addSampleSet" data-theme="d" class="ui-btn-right">Add Sample</button-->
+	</div>
+</div>
+
+<!-- setProperties PAGE ===============================================================-->
+<div data-role="page" id="setProperties" data-theme="d">
+	<div data-role="panel" id="navpanelProperties" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelProperties"
+		   data-iconpos="notext">Menu</a>
+
+		<h1 id='setHeader'></h1>
+	</div>
+
+
+	<div data-role="content">
+		<div id="multiAtributes">
+			<form id='setAtributesForm'>
+				<div class="Multi_only">
+					<div class="ui-field-contain">
+						<label for="setType">Select set type:</label>
+						<select id="setType" name="setType" data-mini="true" onchange="save_data(this.name,this.value)" onBlur="save_data(this.name,this.value)">
+							<option value="EDI">EDI</option>
+							<option value="EWI">EWI</option>
+							<option value="EWI">Other</option>
+						</select>
+					</div>
+				</div>
+				<div class="ui-field-contain">
+					<label for="containersQuantity">Number of containers:</label>
+					<input type="number" name="containersQuantity" id="containersQuantity"
+						   data-mini="true" min="1" max="20" value="1"
+						   onchange="save_data(this.name,this.value)"
+						   onBlur="save_data(this.name,this.value)"/>
+				</div>
+
+				<div class="ui-field-contain hideFromObserver">
+					<!--legend>Average the Representational Measures of These Sets?</legend-->
+					<div class="containing-element ui-field-contain">
+						<label>Analyze individual containers?</label>
+						<select id="analyzeIndSamples" name="analyzeIndSamples" data-mini="true"
+								onload="save_data(this.name,this.value)"
+								onChange="save_data(this.id,this.value)"
+								onBlur="save_data(this.id,this.value)"
+								autofocus>
+							<option value="Y">Yes, Individual</option>
+							<option selected="" value="N">No, Composite</option>
+						</select></div>
+				</div>
+
+			</form>
+		</div>
+		<div class="hideFromObserver">
+			<h4>Analyses Requested (Applies to all samples):</h4>
+
+			<form id='analysesForm' data-mini="true">
+				<label for="analysesC" class='suspendedAdditionalFields'>(C) Concentration</label>
+				<input type="checkbox" name="analysis" id="analysesC" value="C" class='suspendedAdditionalFields'
+					   data-mini="true" onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesSF">(SF) Sand-Fine break**</label>
+				<input type="checkbox" name="analysis" id="analysesSF" value="SF" data-mini="true"
+					   onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesSA">(SA) Sand Analysis**</label>
+				<input type="checkbox" name="analysis" id="analysesSA" value="SA" data-mini="true"
+					   onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesT" class='suspendedAdditionalFields'>(T) Turbidity</label>
+				<input type="checkbox" name="analysis" id="analysesT" value="T" class='suspendedAdditionalFields'
+					   data-mini="true" onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesLOI">(LOI) Loss-on-ignition**</label>
+				<input type="checkbox" name="analysis" id="analysesLOI" value="LOI" data-mini="true"
+					   onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesBD" class='bottomAdditionalFields'>(BD) Bulk Density</label>
+				<input type="checkbox" name="analysis" id="analysesBD" value="BD" class='bottomAdditionalFields'
+					   data-mini="true" onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesFO" class='bottomAdditionalFields bedloadAdditionalFields'>(FO) Fines Only</label>
+				<input type="checkbox" name="analysis" id="analysesFO" value="FO"
+					   class='bottomAdditionalFields bedloadAdditionalFields' data-mini="true"
+					   onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesDS" class='suspendedAdditionalFields'>(DS) Dissolved Solids</label>
+				<input type="checkbox" name="analysis" id="analysesDS" value="DS" class='suspendedAdditionalFields'
+					   data-mini="true" onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesSC" class='suspendedAdditionalFields'>(SC) Specific Conductance</label>
+				<input type="checkbox" name="analysis" id="analysesSC" value="SC" class='suspendedAdditionalFields'
+					   data-mini="true" onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesZ">(Z) Full-size fractions**</label>
+				<input type="checkbox" name="analysis" id="analysesZ" value="Z" data-mini="true"
+					   onClick="chkBox(this.id,this.value)"/>
+			</form>
+			<span>&nbsp;(**) Possible add-on analysis for individual containers.</span>
+		</div>
+	</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#" class="ui-btn-lef" data-icon="arrow-l" data-direction="reverse" data-rel="back">Back</a>
+		<a id="linkToContainers" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="d"
+		   class="ui-btn-right">Add Sample Info</a>
+	</div>
+</div>
+
+<!-- history PAGE ==============================================-->
+<div data-role="page" id="historyPage" data-theme="d">
+	<div data-role="panel" id="navpanelHistory" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelHistory" data-iconpos="notext">Menu</a>
+
+		<h3>History & Review</h3>
+	</div>
+	<div data-role="content">
+		<h4>List of all submitted events by this user:</h4>
+		<h6 align="right" id="historySortStatement"></h6>
+
+		<div id='historySamples'></div>
+	</div>
+
+
+	<div style="max-width: 400px;" id="authenticateDialogHist" data-role="popup" data-theme="d" data-overlay-theme="d"
+		 data-dismissible="false">
+		<div data-role="header" data-theme="a">
+			<h1>Authenticate</h1>
+		</div>
+		<div id="dialogAuthenticateHist" class="ui-content" role="main">
+		</div>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#MainMenu" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to users
+			menu</a>
+		<a href="#openXMLPage" data-icon="arrow-u" class="ui-btn-right ui-btn-inline" data-role="button">Load XML File
+			into SedWE</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	$('#evtDate').datetimepicker({
+		timepicker: false,
+		maxDate: 0,
+		minDate: new Date(2000, 1 - 1, 1),
+		formatDate: 'Y-m-d',
+		format: 'Y-m-d',
+		mask: false // '9999/19/39 29:59' - digit is the maximum possible for a cell
+	});
+
+	$('#beginDate').datetimepicker({
+		timepicker: false,
+		maxDate: 0,
+		minDate: new Date(2000, 1 - 1, 1),
+		formatDate: 'Y-m-d',
+		format: 'Y-m-d',
+		mask: false, // '9999/19/39 29:59' - digit is the maximum possible for a cell
+	});
+
+	function formatTime(time) {
+		var result = "wrong time", m;
+		var re = /^\s*([01]?\d|2[0-3])(:?([0-5]\d))?\s*$/;
+		if ((m = time.match(re))) {
+			//result = (m[1].length == 2 ? "" : "0") + m[1] + ":" + (m[2] || "00");
+			result = m[1] + m[2];
+			if (dateTimeExistsInSet() == true) {
+				result = "date/time exists";
+			}
+		}
+
+
+		return result;
+	}
+
+	//function dateTimeExists() {
+
+	//}
+
+	$.mask.definitions['H'] = "[0-2]";
+	$.mask.definitions['M'] = "[0-5]";
+	$('#beginTime').mask("H9:M9", {
+		placeholder: "HH:mm", completed: function () {
+			this.val(formatTime(this.val()))
+		}
+	});
+	//$('#beginTime').mask("H9:M9",{placeholder:"HH:mm (24hr)"});
+	/*
+	 $('#beginTime').datetimepicker({
+	 datepicker:false,
+	 format:'H:i',
+	 mask:true,
+	 value: '23:59'
+	 // step:1
+	 });
+	 */
+	$('#P82073').datetimepicker({
+		datepicker: false,
+		format: 'H:i',
+		mask: false,
+		step: 1,
+		timepickerScrollbar: false
+		// '9999/19/39 29:59' - digit is the maximum possible for a cell
+	});
+	$('#P82074').datetimepicker({
+		datepicker: false,
+		format: 'H:i',
+		mask: false,
+		step: 1,
+		timepickerScrollbar: false
+		// '9999/19/39 29:59' - digit is the maximum possible for a cell
+	});
+
+	$(document).on('pageshow', '#MainMenu', function (event) {
+		//console.log("pageshow Mainmenu");
+		init(); //$.mobile.hidePageLoadingMsg();
+	});
+
+	$(document).on('pageshow', '#newEvent', function (event) {
+		//console.log("pageshow newEvent");
+		init(); //$.mobile.hidePageLoadingMsg();
+
+	});
+
+	function init() {
+		var header = $('[data-role=header]').outerHeight();
+		var panel = $('.ui-panel').height();
+		var panelheight = panel - header;
+		//console.log("height: "+header);
+		//console.log("panel: "+panel);
+		$('.ui-panel').css({
+			'top': header,
+			'min-height': panelheight
+		});
+	}
+
+
+	$('#P00061back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 0);
+	});
+	$('#P00020back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P00065back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 0);
+	});
+	$('#P00010back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P00095back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P63675back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P63676back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P63680back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P65225back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+
+	$('#P72196back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P72217back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P72218back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	/*
+	 $('#popupP61back').click(function() {
+	 $('#popupP61').attr('data-icon','star');
+	 $('#popupP61').removeClass('ui-icon-grid').addClass('ui-icon-star');
+	 });
+
+	 */
+</script>
+</body>
+</html>

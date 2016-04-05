@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+<!--html manifest="sedwe.manifest"-->
+<html>
+<head>
+	<title>SedWE Web App</title>
+	<meta http-equiv="x-ua-compatible" content="IE=EDGE"/>
+	<meta charset="utf-8">
+	<link rel="apple-touch-startup-image" href="512.png"/>
+	<link rel="shortcut icon" href="152.png" type="image/x-icon"/>
+	<!--meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/-->
+	<meta content="width=device-width, minimum-scale=1, maximum-scale=1" name="viewport">
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="viewport" content="initial-scale=1.0"/>
+	<meta name="viewport" content="width=320.1"/>
+
+	<link rel="apple-touch-icon" href="512.png"/>
+
+	<link rel="stylesheet" href="jquery-mobile142/themes/customsedwe.min.css" type="text/css"/>
+	<link rel="stylesheet" href="jquery-mobile142/themes/jquery.mobile.icons.min.css" type="text/css"/>
+	<link rel="stylesheet" href="jquery-mobile142/jquery.mobile.structure-1.4.2.min.css" type="text/css"/>
+	<!--link rel="stylesheet" href="assets/css/overrides.css" type="text/css"/-->
+	<script src="modernizr-latest.js" type="text/javascript"></script>
+	<script src="jquery-mobile142/jquery-1.11.0.min.js" type="text/javascript"></script>
+	<script src="jquery-mobile142/jquery.mobile-1.4.2.min.js" type="text/javascript"></script>
+	<script src="jquery.validate.min.js" type="text/javascript"></script>
+	<script src="assets/js/jquery.maskedinput.js" type="text/javascript"></script>
+	<script src="oldcode/datetime/jquery.datetimepicker.js" type="text/javascript"></script>
+	<script src="includes/vkbeautify.0.99.00.beta.js" type="text/javascript"></script>
+
+
+	<script src="assets/js/globalVariables.js" type="text/javascript"></script>
+	<script src="assets/js/navMenu.js" type="text/javascript"></script>
+	<script src="assets/js/ajaxFunctions.js" type="text/javascript"></script>
+	<script src="assets/js/helperFunctions.js" type="text/javascript"></script>
+	<script src="assets/js/localStorageFunctions.js" type="text/javascript"></script>
+	<script src="assets/js/layoutFunctions.js" type="text/javascript"></script>
+	<script src="assets/js/sedweClientSetup.js" type="text/javascript"></script>
+	<script src="assets/js/generateTagstoString.js" type="text/javascript"></script>
+	<script src="assets/js/xmlToLocalStorage.js" type="text/javascript"></script>
+
+
+	<link rel="stylesheet" type="text/css" href="oldcode/datetime/jquery.datetimepicker.css"/>
+	<link rel="stylesheet" href="assets/css/menu.css" type="text/css"/>
+
+	<!--link rel="stylesheet" href="assets/css/overrides.css" type="text/css" /-->
+
+
+	<style>
+		.error {
+			border-color: #F78181;
+			color: red;
+			block;
+		}
+
+		.ui-button {
+			margin: 0 auto;
+		}
+
+		.ui-header .ui-title, .ui-footer .ui-title {
+			margin: 0.6em 10% 0.8em !important;
+		}
+
+		.backgnd {
+			background: #D3B593;
+		!important;
+			background-image: url(assets/images/base.jpg);
+		!important;
+			background-size: cover;
+		}
+	</style>
+</head>
+
+<body>
+
+
+<!-- userPage PAGE  (login page) -->
+<div data-role="page" id="userPage" data-theme="d">
+	<div id="userPageHeader" data-role="header" data-position="fixed" data-tap-toggle="false">
+		<img src="assets/images/usgs-b.gif" alt="USGS logo" style="margin: 10px 0 10px 5px">
+	</div>
+	<div  data-role="content">
+		<div style="margin-left:auto;margin-right:auto;max-width:350px" id="Dialog" data-overlay-theme="b" data-theme="d" data-dismissible="false">
+			<p style="text-align:center"><img src="assets/images/sedwe-logo-225.gif" alt="SED_WE logo"
+											  style="margin: 10px 0 10px 5px"></p>
+
+			<div id="mainLoginDialog" role="main" class="ui-content centerObj">
+				<p>
+				<span style="font-size:1.2em"><strong>Please, enter your email</strong></span><br />
+					<p id="loginError" class="redColor hidden">The user does not have any assigned station. Please, type another email. (or go to the Admin module and assign a station to this user)</p>
+				</p>
+
+				<form id="loginF">
+					<input name="login_username" id="login_username" type="text" placeholder="Enter Email Address"  required email="true" />
+					<input name="gobutton" type="submit" value="Go!">
+					</form>
+			</div>
+
+			<br/>
+
+			<h2 style="text-align:center"><a href="#help_manual" style="text-decoration:none !important;">User Manual</a></h2>
+			<h2 style="text-align:center"><a href="#help_release" style="text-decoration:none !important;">Release Notes</a></h2>
+			<h2 style="text-align:center"><a href="#about" style="text-decoration:none !important;">About SEDWE</a></h2>
+		</div>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<h3></h3>
+	</div>
+</div>
+
+<!-- about PAGE (not logged in)-->
+<div data-role="page" id="about" data-theme="d">
+	<div id="aboutHeader" data-role="header" data-position="fixed" data-tap-toggle="false">
+		<img src="assets/images/usgs-b.gif" alt="USGS logo" style="margin: 10px 0 10px 5px">
+	</div>
+	<div data-role="content">
+		<div style="margin-left:auto;margin-right:auto;max-width:550px" id="aboutDialog" data-overlay-theme="b" data-theme="d" data-dismissible="false" style="max-width:400px;">
+
+			<p style="text-align:center"><img src="assets/images/sedwe-logo-225.jpg" alt="SED_WE logo"></p>
+
+			<div id="mainDialog" role="main" class="ui-content">
+				<p>The Sediment Data and Information Web-based (SEDWE) is created by the United States Geological
+					Survey. </p>
+
+				<p>SED_WE provides users a range of hand-held platforms to handle and transfer USGS sediment-sample data
+					and information collected in the field into the National Water Information System (NWIS), and to the
+					USGS Sediment Laboratory Environmental Database System (SLEDS), through the Sediment-sample (Sed)
+					application.</p>
+
+				<p><span><strong>Contact:&nbsp;</strong></span>gs-w_sedwe@usgs.gov
+					<br/><span><strong>Version:&nbsp;</strong></span> 1.0.0 (Oct 1, 2015)</p>
+			</div>
+		</div>
+	</div>
+
+	<div id="about_footer"></div>
+
+</div>
+
+
+<!-- MainMenu PAGE -->
+<div data-role="page" id="MainMenu" data-theme="d">
+
+	<div data-role="panel" id="navpanelHome" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+		<a href="#clearLSDialog" data-role="button" data-rel="popup">Clear Local Storage</a>
+
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelHome" data-iconpos="notext">Menu</a>
+		<div id="syncingDiv">
+			<a id="syncingArea" class="ui-btn-left" style="margin-top:10px;" onclick="attemptToSyncLSAndDB(SyncCompleteCallback, SyncFailCallback)"></a> <!--data-icon="sedwe-syncAnimate"-->
+		</div>
+		<script type="text/javascript">
+			$("#syncingDiv").hide(0);
+		</script>
+		<h3 id='MainMenuHeader'></h3>
+	</div>
+	<div data-role="content">
+		<div data-collapsed="false" data-content-theme="c" data-iconpos="right" data-role="collapsible"
+			 data-collapsed-icon="plus" data-expanded-icon="minus">
+			<h2>Shipments Manager</h2>
+			<ul data-role="listview">
+				<li><a href="#newEvent" onClick="setEventCounter();ls.setItem('createOrEdit','create')">Add sets or groups of samples</a></li>
+				<li><a href="#currentShipmentPage" id='currentButton'>Current Shipment</a></li>
+				<li><a href="#historyPage" id='historyButton'>Review / History</a></li>
+
+			</ul>
+		</div>
+
+		<div style="max-width: 400px;" id="clearLSDialog" data-role="popup" data-theme="d" data-overlay-theme="d"
+			 data-dismissible="false" data-position-to="window">
+			<div data-role="header" data-theme="a">
+				<h1>Clear Local Storage</h1>
+			</div>
+			<div class="ui-content" role="main">
+				<p>This will clear all SedWE data from the local device.  Use with <u>EXTREME</u> caution.  All data not syncronized with the SedWE database will be irretriveably lost.</p>
+				<p><b>This action cannot be undone!</b></p>
+				<a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" href="#" data-rel="back">Cancel</a>
+				<a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" href="" data-transition="flow" data-rel="back" onclick="ClearLS();">Delete</a>
+			</div>
+		</div>
+
+
+
+		<!--Image Manager
+		<div data-role="collapsible" data-collapsed="true" data-content-theme="c" data-collapsed-icon="plus" data-theme="d"
+			 data-expanded-icon="minus" data-iconpos="right">
+			<h1>Manage Images</h1>
+
+			<ul data-role="listview">
+				<div style="padding:10px">
+					<p id="pictureManagerFeedback" style="color:rgb(255,0,0)"></p>
+					<form id="pictureManager" action="?" method="POST" enctype="multipart/form-data">
+						<input type="file" id="takePicture" name="takePicture"/>
+						<img id="show-picture" alt="" height='200px' style="border-radius:10px; padding:5px"/>
+						<label for="imgComment">Comment:</label>
+						<textarea cols="40" rows="12"  id="imgComment" placeholder="Describe the picture."></textarea>
+						<!--input type="button" id="uploadImgBtn" value="Submit!"/
+						<a id="submitImgBtn" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-d">Submit</a>
+					</form>
+					<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+						<div data-role="header" data-theme="a">
+							 <h1>Send Picture and comment?</h1>
+						</div>
+						<div role="main" class="ui-content">
+							<h3 class="ui-title">Are you sure you want to send this picture and this comment?</h3>
+							<img src="" height="100px" id="imgPreview" alt=""/>
+							<p id="commentPreview"></p>
+							<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-d" data-rel="back">Cancel</a>
+							<a href="#" id="uploadImgBtn" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-icon-right ui-icon-mail ui-btn-b" data-rel="back" data-transition="flow">Send</a>
+						</div>
+					</div>
+				</div>
+			</ul>
+		</div>
+		<!-- image manager ends -->
+		<a style="text-align: left" data-role="button" data-rel="popup" data-icon="recycle" onclick="attemptToSyncLSAndDB(SyncCompleteCallback, SyncFailCallback);">Sync Device with Database</a>
+		<a style="text-align: left" data-role="button" href="#openXMLPage" data-icon="arrow-u" >Upload XML File into SedWE</a>
+		<div data-role="collapsible" data-collapsed="true" data-content-theme="c" data-collapsed-icon="plus"
+			 data-theme="d"
+			 data-expanded-icon="minus" data-iconpos="right">
+			<h2>Help</h2>
+			<ul data-role="listview">
+				<li><a href="#help_manual" id="help_manual">Users Manual</a></li>
+				<li><a href="#about" id='about'>About SedWE</a></li>
+				<li><a href="#help_release" id='help_release'>Release Notes</a></li>
+			</ul>
+		</div>
+
+	</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<!--a href="#" class="ui-btn-lef" data-icon="arrow-l" data-direction="reverse" data-rel="back">Back</a-->
+		<!-- <a href="#userPage" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to Home</a> -->
+	</div>
+</div>
+<!-- MainMenu-->
+
+<!-- HELP-> USER MANUAL PAGE ==============================================-->
+<div data-role="page" id="help_manual" data-theme="d">
+	<div data-role="panel" id="navpanel_help_manual" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanel_help_manual"
+		   data-iconpos="notext">Menu</a>
+
+		<h3>SedWE User Manual</h3>
+	</div>
+	<div data-role="content">
+
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:18.0pt; ">The  SedWE Field Application for USGS Sediment Data</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">SedWE is a field application for  sediment data collection and entry for the USGS. SedWE can be used only at  stations that are registered in the SedWE database, and only by people who are  registered as users in SedWE and assigned particular stations to work at. Each  station in SedWE is assigned specific email recipients, who receive, via email,  field data submitted by the user of the SedWE field application.</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">As many of the field sites may be  remote and internet access is not available, the SedWE application can be used  in both on-line and off-line modes. In on-line mode, data are stored on the  device and also backed-up across the network to a database (the data are 'saved'  only, <strong>not</strong> submitted to SedLOGIN). When  a user is working remotely in off-line mode, or without internet connection,  data are stored on the device and cannot be saved to the network database until  later.  (If the device is formatted or lost  at this point, the data are lost). When a user has access to the internet later,  the data may be backed-up to the network.  </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; color:#7030A0; ">[ Note:  Observers are not supported in Version 1.0 of  SedWE: <br>
+  SedWE makes it easy for non-USGS observers to enter basic data associated with  the sediment samples an observer collects, and for USGS hydrographers  (technicians) to enter more complete data associated with sediment samples.  (Observers have less extensive powers than USGS hydrographers.) ]</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">SedWE also makes it easy to transfer  the data electronically into the SedLOGIN application, for submission to a USGS  sediment laboratory and to the QWDATA database in NWIS.</span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Note: SedWE requires an HTML5 compliant web browser with  javascript enabled. Windows Mobile does not support HTML5. Additionally, SedWE  does not work properly on Internet Explorer. Users should use Chrome, Firefox, Safari,  Opera, Edge or another HTML5 compliant web browser.</span></strong></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:13.5pt; ">OVERVIEW  OF SedWE ARCHITECTURE</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">SedWE runs on hand-held devices,  tablets, and laptops, but the software is web-based. Therefore, there is  nothing to install on the device. All the user must do is point the device's  browser to the SedWE website, and it downloads the software into local storage  on the device. As long as the local storage is not cleared, the software exists  on the device, and can still run, even when there is no longer an internet  connection (which is the case at many field sites). Thus, SedWE can run in  on-line mode (with an internet connection), as well as in off-line mode (when  there is no internet connection). </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Sediment data can be entered into  SedWE similarly, in on-line mode, and in off-line mode. When in on-line mode,  the data entered into the device are backed-up to the SedWE database when the  user synchronizes with the SedWE website. This cross-network storage is called &quot;synchronization&quot;,  and we say the device is &quot;synched&quot; with the database. </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">When in off-line mode, the data  entered into SedWE are stored only in the device's local storage. At a later  time, when the device can be &quot;on-line&quot;, the user can synch the locally  stored data with the SedWE database. The data are not 'submitted' when the  device is synched, rather the data are stored on the SedWE network.</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">A detailed description of the main  menu is given hereafter, yet a brief overview is warranted at this point. The  main menu contains selectable buttons: Shipments Manager, Add sets or groups of  samples, Current Shipment, Review/History, Sync Device to Database, and Help.  Each of these are described in detail later in this manual. In the upper right  corner of the main menu is a circle with three horizontally stacked dashes,  affectionately called a 'hamburger menu'. Clicking on this button reveals  additional sections of SedWE: Main Menu, User Manual, and Clear Local Storage.</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">The Main Menu, and User Manual are mostly  self-explanatory, and are explained in detail later, but the option to Clear  Local Storage requires immediate explanation.  At times, a user may find it necessary to  clear their local storage to start over with no data in the local device. Selecting  the 'Clear Local Storage' option will allow that. <strong>Warning: if you have been working in offline mode and have not synched  the SedWE application (see description of on-line/off-line modes described  above) and select 'Clear Local Storage', all of the data entered will be lost.</strong></span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:13.5pt; ">OVERVIEW  OF SedWE WORKFLOWS</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">The main work of SedWE is done in  the SedWE client, where field data is entered; therefore, the majority of this  document describes the workings of the SedWE client. What happens in the SedWE  client is controlled by how users and stations are administered in SedWE, which  is done in the SedWE Admin Module. A brief description of the Admin Module  follows.</span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Admin  Module</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Each station registered in SedWE is  associated with one state (such as Oregon, or Puerto Rico). Also, each station  in SedWE is associated with one or more &quot;email recipients&quot; who  receive the emails containing sediment data submitted by a SedWE user who has  submitted data for that station.</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Each user registered in SedWE is  assigned one or more SedWE stations for which they may use SedWE. SedWE will  not allow a user to enter data for a station NOT assigned to that user. Users  are added to SedWE via the Admin Module. </span><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Adding a new  user to SedWE, whether by the User Management screen or by importing from a  SedLOGIN project, is a two-step process. The added user is first sent an email,  notifying that he/she has been added and requiring the new user to verify by  clicking on a verification link in the email. This verifies that the correct  email address was entered for the user. When the user clicks on the  verification link, a second email is sent, which completes the process of  adding the user to SedWE. Until the second email is sent, the user is NOT YET a  user of SedWE.</span><span style="font-family:'Times New Roman',serif; font-size:12.0pt; "> </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Control of the stations and users is  done in the administration module of SedWE. All hydrographers registered in  SedWE are allowed to register users and stations for sediment work with SedWE.  Hydrographers may also import Users and/or Stations from their projects in  SedLOGIN, into the SedWE admin database. </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">See the Admin Module's  documentation, available in the Admin Module itself, for more details on  registering users and station.</span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Field Data Workflow</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">In the SedWE application, as in  SedLOGIN, the term 'sample' is equivalent to a unique record number in QWDATA.  Thus, if a composite of 5 bottles were collected, those 5 bottles become <strong>one</strong> 'sample' that is entered into  SedWE. Alternatively, if a cross-section of 5 bottles was collected and each  bottle was to be analyzed individually, the user would log in <strong>five</strong> individual 'samples' into SedWE.</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">A brief outline of the workflow for  field data is given here. The remainder of this document fills in the details. </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">The data structure of SedWE is  patterned after the data structure of SedLOGIN, which is documented at (</span><a href="https://qwdx.cr.usgs.gov/uo/labxfer/help/sedlog_help.html" target="_blank"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; color:blue; ">https://qwdx.cr.usgs.gov/uo/labxfer/help/sedlog_help.html</span></a><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">). Using SedWE, the user enters sediment data as an &quot;Event&quot;  of either one &quot;Group&quot; (limited to 40 or fewer single container  samples per group), or one or more &quot;Sets&quot;, similar to the events,  sets, and groups in SedLOGIN. Instead of entering sample details in SedLOGIN,  the user can now enter them in SedWE, which are later imported into SedLOGIN. </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">After entering the details of each  sample in an event, the user submits the event from SedWE, and an XML file  containing the sediment data is sent, attached to an email, to all the email  recipients registered to receive submitted data for that station. The XML file  is generated with the name: siteID_userID_YYYY-MM-DD.xml, where siteID is the 8  – 15 digit site ID, userID is the username of the person submitting the XML  file, and YYYY-MM-DD is the date of the first sample entered.</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; color:#7030A0; ">[ note:  Observers are not supported in Version 1.0 of  SedWE: <br>
+  The SedWE client functions differently for a USGS technician than it does for  an observer. A submission by an observer is not yet complete. The observer can  enter only a few basic field parameters, so one of the recipients of the email  must review the observer's submission, and specify the analyses, sampling  methods, and sampler types. The technician who oversees the observer is  expected to know what the observer is using. This reviewing person is also a  USGS user, and is most likely working &quot;on-line&quot; within the USGS  network. ]</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Submissions by a USGS technician should  also be reviewed to ensure completeness and accuracy. Instructions on how to open  an XML file for review in SedWE is described in the &quot;Reviewing Data&quot;  section below.</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">When a reviewer is satisfied that an  event's data are complete and accurate, the reviewer saves the completed data  to another XML file, which can be imported into SedLOGIN, providing one more  interface to view/review the data, modify it if necessary, and submit it to the  sediment laboratory and to QWDATA in NWIS. </span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:13.5pt; ">MAIN  MENU</span></strong></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Shipments  Manager</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">The <strong>Shipments Manager</strong> menu is  where sample information is entered, reviewed, edited, and submitted. The <strong>Shipments  Manager</strong> is divided into three submenus: </span></p>
+		<ol start="1" type="1">
+			<li  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Add sets or groups of samples,</span></li>
+			<li  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Current Shipment, and</span></li>
+			<li  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Review/History.</span></li>
+		</ol>
+		<p  style="margin-bottom:.0001pt;line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; "><br>
+  Add sets or groups of samples is the menu which begins the process of entering  data for suspended sediment, bottom material, and bedload samples. Current  shipment is the menu in which data are viewed, modified, submitted, or deleted.  The review/history menu lists all of the submitted events by a user. These  menus will be described in detail. </span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Sync  Device to Database</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Selecting 'Sync Device to Database'  effectively backs up the data from the device's local storage to SedWE's  network backup database. These data have not been submitted for review or  merged into SedLOGIN.  Synchronizing the  device with the backup database occurs in three steps:</span></p>
+		<ol>
+			<li><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">First, any data marked for deletion  on the device is deleted from SedWE's network backup database. (Actually, it is  simply marked as deleted, but remains stored.)</span></li>
+			<li><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Next, any new data on the device,  that does NOT already exist in SedWE's backup database, is copied to the  database.</span></li>
+			<li><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Lastly, any data existing in SedWE's  backup database which does NOT currently exist on the device, is copied to the  device's local storage.</span></li>
+		</ol>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Help</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">The <strong>Help</strong> menu is where  information regarding SedWE is found. The Help menu contains three submenus: </span></p>
+		<ol start="1" type="1">
+			<li  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Users Manual,</span></li>
+			<li  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">About SedWE, and </span></li>
+			<li  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Release Notes.</span></li>
+		</ol>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">The Users Manual describes how to  navigate the application, the About SedWE section contains the SedWE version  number, release date, contact email, as well as a brief description of SedWE,  and the Release Notes section documents changes made with each version of  SedWE. </span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:13.5pt; ">MANAGING  DATA in the SedWE CLIENT</span></strong></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Adding  data</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Adding data can be done in off-line  and on-line modes. In the main menu, verify that the <strong>Shipments Manager</strong> submenus are expanded (this is the default viewing when in the main menu).  Selecting the <strong>Shipments Manager</strong> line, or plus/minus icon at the right  end of the line will expand or collapse the subheadings below. To add sample  information, choose 'Add sets or groups of samples'. </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">The next screen, 'Create a new event',  lists three available sampling methods: 1) Suspended Sediment, 2) Bottom  Material, and 3) Bedload. Select the sampling method. The title of the next  screen will depend on the selected method for the samples, yet the data entry  options are the same. Enter the begin date for the event, and select other  event options, as described in the SedLOGIN user's manual. You can also enter  any miscellaneous comments for this sampling event, which can be useful as part  of the site visit's record, and can be useful when working the sediment record  later.  These event-level comments are  not stored in NWIS, but will be stored with the sediment data in the XML file,  for reference later, such as when working records.  This page is where you specify whether the  samples are in a group, or whether they are in one or more set. When finished,  select 'Add group or set' at the bottom right corner. The 'Back' button at the  bottom left corner returns the user to the previous screen. </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">If the samples are one or more sets,  the next screen is titled 'Modify Event' and lists the sets (Set A, Set B,  etc.), however, if the samples are a group of single-container samples, this  page will be skipped. For sets, select a set to begin entering data. The next  screen is titled with the number of containers in this set, and lists the  available analyses to be requested for the samples in the set. Select the  desired analyses and select 'Add Sample Info' at the bottom right corner, to  enter the screens to add detailed information for each sample record. You can  also enter any miscellaneous comments for this set, or group of samples.  Such comments can be useful as part of the  site visit's record, and can be useful when working the sediment record  later.  These set- or group-level  comments are not stored in NWIS, but will be stored with the sediment data in  the XML file, for reference later, such as when working records. For example,  comments in the 'Event Comment' may include sampling-event-related comments  that will aid in the records working process, such as local conditions in the  stream particular to your site, whereas a comment in the 'Set/Group' comment  box relates more to issues particular for the set or group such as volume  issues with a set of ISCO bottles, or high amounts of organic matter observed  in a cross section set.</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">The next screen is titled with the  type of sample and container for which the data are being entered. The data  entry options on this screen are described in the SedLOGIN user's manual. Some  fields are required, while others are optional. On this screen you can enter  any sample-related comments, which will be stored in NWIS as the Sample Field  Comment in QWDATA.  For example, in a bedload  cross section, you must record the time the sampler spent on the bottom, for of  EACH point in the cross section. And if you composite the cross section, there  will be only one sample record for the cross section, so you probably want to  store all the times in this one sample record's Field Comment. When complete,  select 'Next Sample' at the bottom right corner of the page to advance to the  next sample in the set or group. After selecting 'Next Sample' on the final  sample in a set or group, the 'Modify Event' menu appears and displays the sets  again. If another set has not had sample data added, select the set to be  entered and enter the desired sample data. When all of the sets and samples have  been completed, the 'Done' button appears. Selecting 'Done' returns to the <strong>Main  Menu</strong>. </span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:12.0pt; color:#7030A0; ">Adding data for an Observer</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; color:#7030A0; ">[ note:  Observers are not supported in Version 1.0 of  SedWE: <br>
+  When an observer adds data, SedWE allows entry of fewer fields. The observer  enters the station, the sediment type, and the date and time, and only two  field parameters: water temperature (P00010) and gage height (P00065).  Observers are not expected to know all the options for sample-level fields of  QWDATA (such as hydrologic condition, hydrologic event, sample type, etc.), or  many of the field parameters that a technician knows about. For this reason,  data collected by an observer MUST be reviewed and completed by a USGS  reviewer, after the observer submits it. ]</span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Editing  data</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Editing data can be done in off-line  and on-line modes. To edit sets or groups of samples that have been created,  select 'Current Shipment' from the Main Menu. The 'Current Shipment' menu  displays all of the events that have been entered by the user that have not yet  been shipped. Each event has three icons below the event information: 1) a view  icon (symbol of an eye), 2) a submit button (symbol of a letter), and 3) a  delete button (symbol of an X). To edit the information, select the view icon.  The next screen is the 'Modify Event' screen and displays the editable event  information. For additional editing of the data, select the edit icon (symbol  of a pencil) at the bottom of the screen next to the view and delete icons.</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">It is worth noting that a user  cannot delete the last sample in a set or group, as doing so would result in a  set or group without a sample. Instead, delete the entire group or event and  start over.</span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Submitting  data</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Submitting data requires an internet  connection (on-line mode only). Once the data are ready for shipping, select 'Current  Shipment' from the <strong>Main Menu</strong> and locate the submit icon (symbol of a  letter). Once the submit icon is selected, a pop up authentication window  appears and requires entry of the username/email and the active directory  password (for a technician), or the username/email and SedWE code (for an  observer) before the data are submitted. Once the data are submitted, an email  with the XML file will be sent to the user and all the email recipients of data  for that SedWE station. </span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Reviewing  data</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">To review the events that you have  previously submitted yourself, select 'Review/History' from the <strong>Main Menu</strong>.  The next screen displays the 'History &amp; Review' options. To review a  previously submitted event in the list, select the view icon (symbol of an  eye). </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">To review an XML file submitted by  someone else, you must pull that XML file into your own SedWE &quot;Current  Shipment&quot; section.  This can be done by saving that XML attachment (from the email you  received) to your computer disk, enter SedWE and go to the Main Menu screen, select the 'Upload XML File into SedWE' button, and specify the XML file on your disk. </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; color:#7030A0; ">[ note:  Observers are not supported in Version 1.0 of  SedWE: <br>
+  Remember, submissions by observers MUST be reviewed, since the observer was not  allowed to submit a complete dataset, such as specifying analyses, or several  of the sample-level fields of QWDATA. ]</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Also, initial submissions from USGS  technicians should be reviewed by someone, to ensure completeness and accuracy  of the data.</span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">SedWE has an option for viewing  sample data, which is helpful for viewing site visit data, for data review, and  for the process of working sediment records. To view a sample report, go to  History &amp; Review, click on the View/Modify event button of the desired  event, then click on the circle button with the icon of the eye on it, for each  sample you want to review. This will open a sample report which contains  details of that sample, as well as the event and set details. Any event  comments, set comments, or container comments entered with this sample are  shown in this sample report. </span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Re-submitting  data</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Re-submitting data requires an  internet connection (on-line mode only). Whenever any changes need to be made  during review of a submitted XML data file, the reviewer must re-submit the  data via SedWE, to generate a corrected XML file. This corrected XML file is  the one to load into SedLOGIN. </span></p>
+		<p  style="line-height:normal;"><strong><span style="font-family:'Times New Roman',serif; font-size:13.5pt; ">IMPORTING  DATA INTO SedLOGIN</span></strong></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">Importing an XML file into SedLOGIN  can be done only by a user who is logged into SedLOGIN, and only into a  SedLOGIN project that the user is a member of. SedLOGIN version1.8 and higher  has an option to &quot;Import Data from SedWE&quot;. </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">The import is done in 2 steps.  First, the user specifies an XML file from his or her computer disk, and  SedLOGIN reads that file and converts the XML format to the usual &quot;wide&quot;  SedLOGIN display. The user can see the display, and decide if it looks correct  BEFORE actually saving the data into SedWE. </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">When the user decides to save the  data, the imported event's data are added to the project's &quot;Home and  Current Shipment&quot;. From this point, the user can still use the &quot;Modify  Mode&quot; of SedLOGIN to correct any last-minute errors. </span></p>
+		<p  style="line-height:normal;"><span style="font-family:'Times New Roman',serif; font-size:12.0pt; ">The user can submit the SedLOGIN's  current shipment whenever ready. Perhaps the user may import more XML datasets  from SedWE, or perhaps add more sets or groups via the SedLOGIN interface. In  any case, when the user submits via SedLOGIN, those data are final (just as  SedLOGIN's &quot;submit&quot; has always been). The data submitted via SedLOGIN  are sent to the USGS sediment lab associated with that SedLOGIN project, and  they are also uploaded into QWDX as field data for transmittal to QWDATA.</span></p>
+
+	</div>
+
+<div id='manual_footer'></div>
+</div>
+
+
+<!-- HELP-> RELEASE INFO PAGE ==============================================-->
+<div data-role="page" id="help_release" data-theme="d">
+	<div data-role="panel" id="navpanel_help_release" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanel_help_release"
+		   data-iconpos="notext">Menu</a>
+
+		<h3>SedWE Release Notes</h3>
+	</div>
+	<div data-role="content">
+		<p>
+		<p>SedWE Version 1.0, released August, 2015
+		<p><p>The first release of SedWE, the Sediment Data Field Application, provides a basic set of functions allowing a user to store field data at sediment sites for later transfer to SedLOGIN, as well as store miscellaneous field information for later use while working records.  SedWE runs in web browsers such as Chrome, Safari, and Firefox (but not in Internet Explorer), and on labtops, iphones, and tablets (but not older technology, running Windows Mobile 6).
+		<p>SedWE Version 1.0 consists of a client that enables the entry of field data, an administrative module that enables the setup of users and stations, a user’s manual that describes the functions of SedWE, and a central database that backs up and archives the datasets submitted from field devices running SedWE.  A field device or computer accesses SedWE software over the internet, which runs in the device’s local storage.
+		<p>The client is designed to accept all data that SedLOGIN can accept, plus some extra “field form” information that is not stored in NWIS but is useful for working records.
+		<p>The first version of SedWE provides basic functionality, but does not have every feature we want or need.  Some major elements that are NOT in Version 1.0  but we expect in future versions are:
+			<ol>
+		<li>Support for non-USGS “Observer” users of the SedWE client
+			<li>An Image Module, for uploading photos from a site
+			<li>More ability to accept “field form” information that does not store in NWIS, but that is useful for working records and archiving with the site visit data.
+</ol>
+
+		</p>
+	</div>
+
+	<div id="release_footer"></div>
+</div>
+
+
+<!-- TESTING PAGE ==============================================-->
+<div data-role="page" id="testingPage" data-theme="d">
+	<div data-role="panel" id="navpanelTestingPage" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a type="button" class="syncingClass ui-btn-left" style="margin-top:10px;" data-role="button" data-icon="sedwe-syncAnimate" data-iconpos="notext" onclick="attemptToSyncLSAndDB(SyncCompleteCallback, SyncFailCallback)">Sync</a>
+
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelTestingPage"
+		   data-iconpos="notext">Menu</a>
+
+		<h3>Testing Page - Developers use only!!!</h3>
+	</div>
+	<div data-role="content">
+		<h4 color="red">!!! DEVELOPER TESTING ONLY !!!</h4>
+
+		<div id='testingButtons'>
+			<input type="button" onclick="attemptToSyncLSAndDB()" value="attemptToSyncLSAndDB">
+			<input type="button" onclick="testShowLocalStorage('testingOutput')" value="show Local Storage">
+			<input type="button" onclick="attemptToSyncLSAndDB(SyncCompleteCallback, SyncFailCallback)"
+				   value="test 2-way Sync!">
+			<input type="button" onclick="window.localStorage.clear()" value="Clear LS">
+			<input type="button" onclick="clearLocalHistoryList()" value="Clear LS History">
+		</div>
+		<div id="ajax-loading"></div>
+		<div id='testingOutput'></div>
+	</div>
+
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#MainMenu" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to users
+			menu</a>
+
+
+	</div>
+</div>
+
+
+<!-- currentShipmentPage PAGE ==============================================-->
+<div data-role="page" id="currentShipmentPage" data-theme="d">
+	<div data-role="panel" id="navpanelCShipment" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelCShipment"
+		   data-iconpos="notext">Menu</a>
+
+		<h3>Current Shipment</h3>
+	</div>
+	<div data-role="content">
+		<h4>Click on a button to access, export XML, or delete an event</h4>
+
+		<div id='currentSamples'></div>
+	</div>
+	<div style="max-width: 400px;" id="deleteEventDialog" data-role="popup" data-theme="d" data-overlay-theme="d"
+		 data-dismissible="false">
+		<div data-role="header" data-theme="a">
+			<h1>Delete</h1>
+		</div>
+		<div id="dialogDeleteEvent" class="ui-content" role="main">
+		</div>
+
+	</div>
+
+	<div style="max-width: 400px;" id="authenticateDialog" data-role="popup" data-theme="d" data-overlay-theme="d"
+		 data-dismissible="false">
+		<div data-role="header" data-theme="a">
+			<h1>Authenticate</h1>
+		</div>
+		<div id="dialogAuthenticate" class="ui-content" role="main">
+		</div>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#MainMenu" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to users
+			menu</a>
+	</div>
+</div>
+
+<!-- viewModifyEventPage  ========================================-->
+<div data-role="page" id="viewModifyEventPage" data-theme="d">
+	<div data-role="panel" id="navpanelCSC" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" id="viewModifyEventHeader" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelCSC"
+		   data-iconpos="notext">Menu</a>
+		<h1>Modify Event</h1>
+	</div>
+
+	<div data-role="content">
+		<div id="viewModifyEventInformation"></div>
+		<a href="#" id="saveViewModifyPage"  class="ui-btn-right ui-btn-inline" data-icon="check" data-role="button" onclick="saveChangesToEvent()">Save Event Changes</a>
+		<div id="currentShipmentSamples"></div>
+	</div>
+
+
+	<div style="max-width: 400px;" id="deleteDialog" data-role="popup" data-theme="d" data-overlay-theme="d"
+		 data-dismissible="false">
+		<div data-role="header" data-theme="a">
+			<h1>Delete</h1>
+		</div>
+		<div id="dialogDeleteSamples" class="ui-content" role="main">
+		</div>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#currentShipmentPage" id="backToEventsListButton" class="ui-btn-lef ui-btn-inline" data-ajax="false" data-icon="arrow-l" data-role="button">Back to Current Events</a>
+
+	</div>
+</div>
+
+<!-- openXMLPage ========================================================-->
+<div data-role="page" id='openXMLPage' data-theme="d">
+	<div data-role="panel" id="navpanelOpenXML" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" id='openXMLHeader' data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelOpenXML" data-iconpos="notext">Menu</a>
+
+		<h3>Open XML</h3></div>
+	<div data-role="content" id='openXMLContent'>
+		Select an XML file generated by SED_WE:
+		<input type="file" id="fileXML">
+	</div>
+	<!-- content-->
+	<div data-role="content" id="openXMLMessageToUser"></div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#MainMenu" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to Main Menu</a>
+	</div>
+</div>
+<!--    openXMLPage-->
+
+<!-- reportPage PAGE ========================================================-->
+<div data-role="page" id='reportPage' data-theme="d">
+	<div data-role="panel" id="navpanelReport" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" id='reportHeader' data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelReport" data-iconpos="notext">Menu</a>
+
+		<h3>Report</h3></div>
+	<div data-role="content" id='reportContent'>
+		<!--table data-role="table" class="ui-responsive" data-mode="columntoggle" id="reportTable"
+			   data-column-btn-text="Click to hide/show columns"></table-->
+
+
+	</div>
+	<!-- content-->
+</div>
+<!--    reportPage-->
+
+
+<!-- viewSamplePage PAGE ========================================================-->
+<div data-role="page" id='viewSamplePage' data-theme="d">
+	<div data-role="panel" id="navpanelView" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+		<a href="#" onclick="$('#navpanelView').panel('close');window.print();" data-role="button" data-rel="popup">Print</a>
+
+	</div>
+
+	<div data-role="header" id='viewHeader' data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelView" data-iconpos="notext">Menu</a>
+
+		<h3 id="sampleReportHeader">Sample Report</h3>
+	</div>
+		<!--table data-role="table" class="ui-responsive" data-mode="columntoggle" id="reportTable"
+			   data-column-btn-text="Click to hide/show columns"></table-->
+	<div data-role="content" id="EventAndSetInfo" style="margin-bottom:-20px">
+	</div>
+	<hr>
+		<div data-role="content" align="center" id="ContainerInfo">
+
+		</div>
+	<!-- content  data-position="fixed" -->
+	<div data-role="footer" data-tap-toggle="false">
+		<a href="#" class="ui-btn-lef" data-icon="arrow-l" data-direction="reverse" data-rel="back">Back</a>
+	</div>
+</div>
+<!--    reportPage-->
+
+
+<!-- newEvent PAGE ========================================================-->
+<div data-role="page" id="newEvent" data-theme="d">
+	<div data-role="panel" id="navpanelSample" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelSample" data-iconpos="notext">Menu</a>
+		<!--div class="ui-bar ui-bar-d"  data-position="fixed" data-tap-toggle="false"-->
+		<!--h3>Add new sample</h3-->
+		<h3>Create a new event</h3>
+	</div>
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true">
+			<li data-role="list-divider">Select the sampling method</li>
+			<li><a href="#page2" id="suspendedTitle" name="sampleType"
+				   onClick="setTitle(this.name,'Suspended Sediment'); fillSelect ('Suspended Sediment'); save_data('sampleType','SuspSed'); setCorrespondingOptions(this.name)">Suspended
+				Sediment</a></li>
+			<li><a href="#page2" id="bottomTitle" name="sampleType"
+				   onClick="setTitle(this.name,'Bottom Material'); fillSelect ('Bottom Material'); save_data('sampleType','Bottom'); setCorrespondingOptions(this.name)">Bottom
+				Material</a></li>
+			<li><a href="#page2" id="bedloadTitle" name="sampleType"
+				   onClick="setTitle(this.name,'Bedload'); fillSelect ('Bedload'); save_data('sampleType','Bedload'); setCorrespondingOptions(this.name)">Bedload</a>
+			</li>
+		</ul>
+	</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#" class="ui-btn-lef" data-icon="arrow-l" data-direction="reverse" data-rel="back">Back</a>
+	</div>
+</div>
+
+<!-- page2 PAGE ============================================================-->
+<div data-role="page" id="page2" data-theme="d">
+	<div data-role="panel" id="navpanelPage2" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelPage2" data-iconpos="notext">Menu</a>
+
+		<h2 id="page2SubHeader"></h2>
+	</div>
+	<div data-role="content">
+		<form id="sampleProperties">
+			<div class="ui-field-contain">
+				<label for="station">Station:</label>
+				<select name="station" id="station" onBlur="save_data(this.id,this.value)" data-mini="true" required
+						autofocus>
+				</select></div>
+			<div class="hideFromObserver">
+
+				<div class="ui-field-contain">
+					<label for="sampleMedium">Sample Medium:</label>
+					<select name="sampleMedium" id="sampleMedium" data-mini="true"
+							onBlur="save_data(this.name,this.value)">
+					</select>
+				</div>
+			</div>
+			<div class="ui-field-contain">
+				<label for="evtDate">Begin Date (for most):</label>
+				<input name="evtDate" id="evtDate" type="text" readonly onBlur="save_data(this.name,this.value)">
+			</div>
+
+			<div class="ui-field-contain">
+				<label for='EVENT'>Hydrologic Event (for most):</label>
+				<select name="EVENT" id="EVENT" data-mini="true" onBlur="save_data(this.name,this.value)">
+					<option value="1">1- Drought</option>
+					<option value="2">2- Spill</option>
+					<option value="3">3- Regulated Flow</option>
+					<option value="4">4- Snowmelt</option>
+					<option value="5">5- Earthquake</option>
+					<option value="6">6- Hurricane</option>
+					<option value="7">7- Flood</option>
+					<option value="8">8- Volcanic activity</option>
+					<option value="9" selected>9- Routine Sample</option>
+					<option value="A">A- Spring breakup</option>
+					<option value="B">B- Under ice cover</option>
+					<option value="C">C- Glacial lake outbreak</option>
+					<option value="D">D- Mudflow</option>
+					<option value="E">E- Tidal action</option>
+					<option value="F">F- Fire, affected by fire prior sampling</option>
+					<option value="H">H- Dambreak</option>
+					<option value="J">J- Storm</option>
+					<option value="K">K- Backwater</option>
+					<option value="X">X- Not applicable</option>
+				</select>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for='CollectedVia'>Collected Via:</label>
+			<select name="CollectedVia" id="CollectedVia" data-mini="true" onChange="save_data(this.name,this.value)">
+				<option value="Undefined">Select...</option>
+				<option value="Wading">Wading</option>
+				<option value="Cable">Cable</option>
+				<option value="Ice">Ice</option>
+				<option value="Boat">Boat</option>
+			</select>
+			</div>
+
+			<hr>
+
+			<div class="ui-field-contain">
+				<legend><h4>Add a Group of single-container samples or one or more Sets of samples:</h4></legend>
+				<div class="containing-element ui-field-contain">
+					<label>Select an option:</label>
+					<select id="singleOrMulti" name="singleOrMulti" data-mini="true"
+							onChange="updateLabel(this.id);save_data(this.id,this.value);showHideAverage();"
+							onBlur="updateLabel(this.id);save_data(this.id,this.value);showHideAverage();" autofocus>
+						<option selected="" value="single">Add a Group of single-container samples</option>
+						<option value="multi">Add one or more Set(s) of (composited or individually analyzed) samples</option>
+					</select></div>
+			</div>
+
+
+			<div class="ui-field-contain">
+				<label class="containerLabel" for="setQuantity">Number of containers in Group</label>
+				<label class="setLabel" for="setQuantity">Number of Set(s) to add</label>
+				<input type="number" min="1" value="1" max="40" data-mini="true" id="setQuantity" name="setQuantity"
+					   onBlur="showHideAverage();save_data(this.name, this.value)"
+					   onChange="showHideAverage();save_data(this.name,this.value)" autofocus/>
+			</div>
+
+			<div class="ui-field-contain multiMoreThanOne">
+				<legend>Average the Representational Measures of These Sets?</legend>
+				<div class="containing-element ui-field-contain">
+					<label>Event average:</label>
+					<select id="averageRep" name="averageRep" data-mini="true"
+							onChange="save_data(this.id,this.value)" onBlur="save_data(this.id,this.value)" autofocus>
+						<option value="Y">Yes</option>
+						<option selected="" value="N">No</option>
+					</select></div>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="EventFieldComments">Event Field Comments:</label>
+				<textarea placeholder="Event Comments - not uploaded to SedLOGIN - 3000 characters max" name="EventFieldComments" rows="4" id="EventFieldComments" maxlength="3000"
+						  onChange="save_data(this.name,this.value)"></textarea>
+			</div>
+		</form>
+
+	</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#" class="ui-btn-lef" data-icon="arrow-l" data-direction="reverse" data-rel="back">Back</a>
+		<a id="addGroupOrSetButton" data-icon="arrow-r" class="ui-btn-right" data-role="button" onclick="saveEventProperties()">Add group or set</a>
+	</div>
+
+
+</div>
+
+<!-- sampleParametersPage PAGE =======================================================-->
+<div data-role="page" id="sampleParametersPage" data-theme="d">
+	<div data-role="panel" id="navpanelSampleParam" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelSampleParam"
+		   data-iconpos="notext">Menu</a>
+
+		<h1 id="sampleParametersPageHeader"></h1>
+	</div>
+
+	<div data-role="content">
+		<!-- ...................................................
+				Sample Parameters Form Starts
+			   ................................................... -->
+		<form id="sampleParameters">
+			<h2>Sample Information</h2>
+
+			<div class="ui-field-contain mandatory">
+				<label for="beginDate">Sample Begin Date:</label>
+				<input id="beginDate" name="beginDate" type="text" data-mini="true"
+					   onChange="save_data(this.name,this.value)" required/>
+			</div>
+
+			<div class="ui-field-contain mandatory">
+				<label for="beginTime">Sample Begin Time:</label>
+				<input id="beginTime" name="beginTime" type="text" data-mini="true"
+					   onChange="save_data(this.name,this.value)" required>
+			</div>
+
+			<div class="hideFromObserver ui-field-contain">
+				<label for='timeDatum'>Time Datum:</label>
+				<select name="timeDatum" id="timeDatum" data-mini="true" onChange="save_data(this.name,this.value)">
+					<option value="SITEFILE">use default from SITEFILE</option>
+					<option value="AST">AST</option>
+					<option value="ADT">ADT</option>
+					<option value="EST">EST</option>
+					<option value="CST">CST</option>
+					<option value="CDT">CDT</option>
+					<option value="MST">MST</option>
+					<option value="MDT">MDT</option>
+					<option value="PST">PST</option>
+					<option value="PDT">PDT</option>
+					<option value="AKST">AKST</option>
+					<option value="AKDT">AKDT</option>
+					<option value="HST">HST</option>
+					<option value="HDT">HDT</option>
+				</select>
+			</div>
+
+			<div class="hideFromObserver ui-field-contain">
+				<!--div class="ui-field-contain"-->
+				<label>Possible Add-on analyses for this sample:</label>
+				<fieldset data-role="controlgroup">
+					<!--legend id="possibleAddon"><script>console.log(">>>en script...");getGroupCheckboxValues('analysis',false,1)</script></legend-->
+					<legend id="possibleAddon"></legend>
+
+					<label id="fullSizeFractionlb" for="addOnAnalysisZ">(Z) Full size fraction</label>
+					<input type="checkbox" id="addOnAnalysisZ" value="Z" data-mini="true"
+						   onChange="chkBoxbyName('addOnAnalysis')"/>
+					<label id="sandFineBreaklb" for="addOnAnalysisSF">(SF) Sand fine break</label>
+					<input type="checkbox" id="addOnAnalysisSF" value="SF" data-mini="true"
+						   onChange="chkBoxbyName('addOnAnalysis')"/>
+					<label id="sandlb" for="addOnAnalysisSA">(SA) Sand Analysis</label>
+					<input type="checkbox" id="addOnAnalysisSA" value="SA" data-mini="true"
+						   onChange="chkBoxbyName('addOnAnalysis')"/>
+					<label id="lossOnIgnitionlb" for="addOnAnalysisLOI">(LOI) Loss on Ignition</label>
+					<input type="checkbox" id="addOnAnalysisLOI" value="LOI" data-mini="true"
+						   onChange="chkBoxbyName('addOnAnalysis')"/>
+				</fieldset>
+				<!--/div-->
+			</div>
+
+			<div class="hideFromObserver ui-field-contain">
+				<label for="brokenContainer">Is this sample record for a broken container?:</label>
+				<select id="brokenContainer" name="brokenContainer" data-mini="true"
+						onChange="save_data(this.id,this.value)" onBlur="save_data(this.id,this.value)" autofocus>
+					<option selected="" value="No">No</option>
+					<option value="Yes">Yes, container is broken</option>
+				</select>
+			</div>
+
+
+			<div class="hideFromObserver ui-field-contain">
+				<label for="collectingAgency">Collecting Agency:</label>
+				<select name="collectingAgency" id="collectingAgency" data-mini="true"
+						onChange="save_data(this.name,this.value)">
+					<option value="USGS-WRD" selected>USGS-WRD</option>
+					<option value="USGS-GD">USGS-GD</option>
+					<option value="observer">Observer</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
+
+			<div class="hideFromObserver ui-field-contain">
+				<label for="collectorInitials">Initial of the person(s) who collected sample:</label>
+				<input type="text" name="collectorInitials" id="collectorInitials"
+					   onChange="save_data(this.name,this.value)" placeholder="Max of 15 characters"/>
+			</div>
+			<div class="hideFromObserver ui-field-contain">
+				<label for="containerNum">Container Number:</label>
+				<input type="number" min="00000000" max="99999999" name="containerNum" id="containerNum"
+					   onChange="save_data(this.name,this.value)" placeholder="Must be between 1 and 40"/>
+			</div>
+			<div class="hideFromObserver ui-field-contain">
+				<label>Hydrologic Condition (HSTAT):</label>
+				<select name="HSTAT" id="HSTAT" data-mini="true" onChange="save_data(this.name,this.value)">
+					<option value="4">4- stable, low stage</option>
+					<option value="5">5- falling stage</option>
+					<option value="6">6- stable, high stage</option>
+					<option value="7">7- peak stage</option>
+					<option value="8">8- rising state</option>
+					<option value="9" selected>9- stable, normal stage</option>
+					<option value="A">A- Not Determined</option>
+					<option value="X">X- Not applicable</option>
+				</select>
+			</div>
+			<div class="hideFromObserver ui-field-contain">
+				<label for='EVENT'>Hydrologic event (EVENT):</label>
+				<select name="EVENT" id="EVENT" data-mini="true" onChange="save_data(this.name,this.value)">
+					<option value="1">1- Drought</option>
+					<option value="2">2- Spill</option>
+					<option value="3">3- Regulated Flow</option>
+					<option value="4">4- Snowmelt</option>
+					<option value="5">5- Earthquake</option>
+					<option value="6">6- Hurricane</option>
+					<option value="7">7- Flood</option>
+					<option value="8">8- Volcanic activity</option>
+					<option value="9" selected>9- Routine Sample</option>
+					<option value="A">A- Spring breakup</option>
+					<option value="B">B- Under ice cover</option>
+					<option value="C">C- Glacial lake outbreak</option>
+					<option value="D">D- Mudflow</option>
+					<option value="E">E- Tidal action</option>
+					<option value="F">F- Fire, affected by fire prior sampling</option>
+					<option value="H">H- Dambreak</option>
+					<option value="J">J- Storm</option>
+					<option value="K">K- Backwater</option>
+					<option value="X">X- Not applicable</option>
+				</select>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="STYPE">Sample type (STYPE in QWDATA):</label>
+				<select name="STYPE" id="STYPE" data-mini="true" onChange="save_data(this.name,this.value)">
+					<option value="1">1- Spike</option>
+					<option value="2">2- Blank</option>
+					<option value="3">3- Reference</option>
+					<option value="4">4- Blind</option>
+					<option value="5">5- Duplicate</option>
+					<option value="6">6- Reference Material</option>
+					<option value="7">7- Replicate</option>
+					<option value="8">8- Spike solution</option>
+					<option value="9" selected>9- Regular</option>
+					<option value="A">A- Not determined</option>
+					<option value="B">B- Other QA</option>
+					<option value="H">H- Composite</option>
+				</select>
+			</div>
+
+			<div class="hideFromObserver ui-field-contain">
+				<label for="ASTAT">Analysis status (ASTAT):</label>
+				<select name="ASTAT" id="ASTAT" data-mini="true" onChange="save_data(this.name,this.value)">
+					<option value="U">U- Unrestricted</option>
+					<option value="I">I- Internal use only</option>
+					<option value="P">P- Propietary</option>
+				</select>
+			</div>
+			<div class="hideFromObserver mandatory ui-field-contain">
+				<label for="P71999">Sample Purpose (P71999):</label>
+				<select name="P71999" id="P71999" data-mini="true" onChange="save_data(this.name,this.value)">
+					<option value="10">10- Routine</option>
+					<option value="15">15- NAWQA, National Quality Assesment</option>
+					<option value="20">20- NASQAN</option>
+					<option value="25">25- NMN, National Monitoring Network</option>
+					<option value="30">30- Benchmark</option>
+					<option value="35">35- RASA, Regional System Aquifier Analysis</option>
+					<option value="40">40- SW Network</option>
+					<option value="55">50- GW Network</option>
+					<option value="60">60- Lowflow network</option>
+					<option value="70">70- Highflow network</option>
+					<option value="80">80- Sampling protocol(Time)(SP)</option>
+					<option value="90">09- Snow survey</option>
+					<option value="100">100- Mt. St. Helen</option>
+					<option value="110">110- Seepage Study</option>
+					<option value="120">120- Irrigation effects</option>
+					<option value="130">130- Recharge</option>
+					<option value="140">140- Injection</option>
+					<option value="150">150- Bank erodibility</option>
+					<option value="160">160- National Blank and spike program</option>
+					<option value="170">170- Quality assurance</option>
+					<option value="180">180- Cross-section variation</option>
+					<option value="190">190- Gorund-water/Surface-water interaction study</option>
+				</select>
+			</div>
+
+			<div class="mandatory ui-field-contain">
+				<label for="P82398">Sampling Method (P82398):</label>
+				<select name="P82398" id="P82398" data-mini="true" onChange="save_data(this.name,this.value)">
+				</select>
+			</div>
+
+			<div class="mandatory ui-field-contain">
+				<label for="P84164">Sampler type (P84164):</label>
+				<select name="P84164" id="P84164" data-mini="true" onChange="save_data(this.name,this.value)">
+				</select>
+			</div>
+
+			<div class="hideFromObserver">
+				<div class=" veryImportant">
+				<label for="P00009">Location in cross section, feet from <strong>left</strong> bank looking downstream
+					(P00009):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<input type="text" class="number" name="P00009" id="P00009" data-mini="true"
+							   placeholder="Feet from left bank " onChange="save_data(this.name,this.value)"/></div>
+					<div class="ui-block-b">
+						<select name="P00009R" id="P00009R" data-mini="true" onChange="save_data(this.name,this.value)">
+							<option value=" ">Remark...</option>
+							<option value="<">&lt;</option>
+							<option value=">">&gt;</option>
+							<option value="E">E</option>
+							<option value="M">M</option>
+							<option value="N">N</option>
+							<option value="A">A</option>
+							<option value="V">V</option>
+							<option value="S">S</option>
+							<option value="U">U</option>
+						</select>
+					</div>
+				</div>
+					</div>
+				<label for="P72103">Location in cross section, feet from <strong>right</strong> bank looking downstream
+					(P72103):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<input type="number" name="P72103" id="P72103" data-mini="true"
+							   placeholder="Feet from right bank" onChange="save_data(this.name,this.value)"/></div>
+					<div class="ui-block-b">
+						<select name="P72103R" id="P72103R" data-mini="true" onChange="save_data(this.name,this.value)">
+							<option value=" ">Remark...</option>
+							<option value="<">&lt;</option>
+							<option value=">">&gt;</option>
+							<option value="E">E</option>
+							<option value="M">M</option>
+							<option value="N">N</option>
+							<option value="A">A</option>
+							<option value="V">V</option>
+							<option value="S">S</option>
+							<option value="U">U</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="ui-field-contain">
+					<label for="P00003">Sampling Depth, in feet (P00003):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<input class="number" type="text" name="P00003" id="P00003" data-mini="true" placeholder="in feet"
+								   onChange="save_data(this.name,this.value)"></div>
+						<div class="ui-block-b">
+							<select name="P00003R" id="P00003R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Remark...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<!-- hideFromObserver -->
+
+				<div class="ui-field-contain">
+					<label for="P00004">Stream width, feet (P00004):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<input class="number" type="text" name="P00004" id="P00004" data-mini="true" placeholder="in feet"
+								   onChange="save_data(this.name,this.value)"></div>
+						<div class="ui-block-b">
+							<select name="P00004R" id="P00004R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Remark...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="ui-field-contain">
+					<label for="P00064">Mean depth of stream, feet (P00064):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<input class="number" type="text" name="P00064" id="P00064" data-mini="true" placeholder="in feet"
+								   onChange="save_data(this.name,this.value)"></div>
+						<div class="ui-block-b">
+							<select name="P00064R" id="P00064R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Remark...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<!-- el de abajo -->
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="M2Lab">Field sample comment, 850 chars max:</label>
+				<textarea placeholder="Message to laboratory" name="M2Lab" rows="2" id="M2Lab" maxlength="850"
+						  onChange="save_data(this.name,this.value)"></textarea>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="ContainerFieldComments">Misc Container Comments:</label>
+				<textarea placeholder="Container-specific Comments - not uploaded to SedLOGIN - 3000 characters max" name="ContainerFieldComments" rows="4" id="ContainerFieldComments" maxlength="3000"
+						  onChange="save_data(this.name,this.value)"></textarea>
+			</div>
+
+		</form>
+	</div>
+	<!-- data role content -->
+
+
+	<div data-role="content">
+		<form id="sampleParameters2">
+
+
+			<h2>Field Parameters</h2>
+
+			<p>Parameters marked with Important (+) must be added for sediment samples. You can add them later, in
+				QWDATA</p>
+
+			<div class="hideFromObserver">
+				<div class="ui-field-contain veryImportant">
+					<label for="P00061">Instantaneous discharge, cfs (P00061):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input class="number" type="text" name="P00061" id="P00061" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP00061" href="#dischargePopup"
+																	 data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-corner-all ui-btn-icon-left ui-btn-inline"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="dischargePopup" data-overlay-theme="d"
+						 class="ui-content hideFromObserver"
+						 data-dismissible="false" style="min-width:250px;" data-theme="c">
+						<!--h3>Discharge Options</h3-->
+						<div data-role="header" data-theme="d"><h1>Discharge Options</h1></div>
+						<div role="main" class="ui-content">
+							<div class="ui-grid-a">
+								<div class="ui-block-a" style="width:40%"><label for="P00061R">Remark:</label></div>
+								<div class="ui-block-b" style="width:60%">
+									<select name="P00061R" id="P00061R" data-mini="true"
+											onChange="save_data(this.name,this.value)">
+										<option value=" ">Select...</option>
+										<option value="<">&lt;</option>
+										<option value=">">&gt;</option>
+										<option value="E">E</option>
+										<option value="M">M</option>
+										<option value="N">N</option>
+										<option value="A">A</option>
+										<option value="V">V</option>
+										<option value="S">S</option>
+										<option value="U">U</option>
+									</select>
+								</div>
+								<div class="ui-block-a" style="width:40%"><label for="P00061M">Method:</label></div>
+								<div class="ui-block-b" style="width:60%"><select name="P00061M" id="P00061M"
+																				  data-mini="true"
+																				  onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="QEST">Q-EST</option>
+									<option value="QADCP">QADCP</option>
+									<option value="QFLUM">QFLUM</option>
+									<option value="QIDIR">QIDIR</option>
+									<option value="QSCMM">QSCMM</option>
+									<option value="QSLPQ">QSLPQ</option>
+									<option value="QSTGQ">QSTGQ</option>
+									<option value="QTRAC">QTRAC</option>
+									<option value="QUNSP">QUNSP</option>
+									<option value="QVELO">QVELO</option>
+									<option value="QVOLM">QVOLM</option>
+									<option value="QWEIR">QWEIR</option>
+								</select>
+								</div>
+								<a id="P00061back" class="ui-btn ui-icon-back ui-btn-icon-left ui-btn-inline ui-shadow"
+								   data-mini="true" href="#" data-rel="back" data-inline="true">Go Back</a>
+							</div>
+						</div>
+					</div>
+					<!--popup-->
+				</div>
+				<!-- end div for P00061 -->
+			</div>
+			<!--hide class-->
+
+
+			<div class="ui-field-contain veryImportant">
+				<label for="P00010">Water Temperature, &deg;C (P00010):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><input type="text" name="P00010" id="P00010" data-mini="true"
+												   onChange="save_data(this.name,this.value)"/></div>
+					<div class="hideFromObserver ui-block-b "><a id="popupP00010" href="#waterPopup" data-rel="popup"
+																 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																 data-mini="true">Options</a></div>
+				</div>
+
+				<div data-role="popup" id="waterPopup" class="ui-content hideFromObserver" data-dismissible="false"
+					 style="min-width:250px;" data-theme="c">
+					<h3>Water Temp. Options</h3>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a" style="width:40%"><label for="P00010R"
+																		 style="margin-top: 0px;">Remark:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P00010R" id="P00010R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select>
+						</div>
+						<div class="ui-block-a" style="width:40%"><label for="P00010M">Method:</label></div>
+						<div class="ui-block-b" style="width:60%"><select name="P00010M" id="P00010M" data-mini="true"
+																		  onChange="save_data(this.name,this.value)">
+							<option value=" ">Select...</option>
+							<option value="TMH01">THM01</option>
+							<option value="TMH02">THM02</option>
+							<option value="TMH03">THM03</option>
+						</select>
+						</div>
+						<div class="ui-block-a" style="width:40%"><label for="P00010N">Null qualifier:</label></div>
+						<div class="ui-block-b" style="width:60%"><select name="P00010N" id="P00010N" data-mini="true"
+																		  onChange="save_data(this.name,this.value)">
+							<option value=" ">Select...</option>
+							<option value="a">a- Planned measurement was not made</option>
+							<option value="b">b- Sample broken/spilled in shipment</option>
+							<option value="e">e- Required equipment not functional or available</option>
+							<option value="f">f- Sample discarded: improper filter used</option>
+							<option value="x">x- Result failed, quality assurance review</option>
+						</select>
+						</div>
+						<a id="P00010back" class="ui-btn ui-icon-back ui-btn-icon-left " data-mini="true" href="#"
+						   data-rel="back">Go Back</a>
+					</div>
+					<!--grid a-->
+				</div>
+				<!--popup-->
+			</div>
+			<!--field contain-->
+
+			<div class="hideFromObserver">
+				<div class="ui-field-contain veryImportant">
+					<label for="P00063">Number of sampling points (P00063):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<input class="number" type="text" name="P00063" id="P00063" data-mini="true"
+								   onChange="save_data(this.name,this.value)"/>
+						</div>
+						<div class="ui-block-b">
+							<select name="P00063R" id="P00063R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Remark...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="ui-field-contain">
+					<label for="P00020">Air Temperature, &deg;C (P00020):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input type="text" name="P00020" id="P00020" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP00020" href="#airPopup" data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="airPopup" class="ui-content hideFromObserver" data-dismissible="false"
+						 style="min-width:250px;" data-theme="c">
+						<h3>Air Temperature Options</h3>
+
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="width:40%"><label for="P00020R">Remark:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P00020R" id="P00020R" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="<">&lt;</option>
+									<option value=">">&gt;</option>
+									<option value="E">E</option>
+									<option value="M">M</option>
+									<option value="N">N</option>
+									<option value="A">A</option>
+									<option value="V">V</option>
+									<option value="S">S</option>
+									<option value="U">U</option>
+								</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P00020M">Method:</label></div>
+							<div class="ui-block-b" style="width:60%"><select name="P00020M" id="P00020M"
+																			  data-mini="true"
+																			  onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="THM04">THM04</option>
+								<option value="THM05">THM05</option>
+							</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P00020N">Null qualifier:</label></div>
+							<div class="ui-block-b" style="width:60%"><select name="P00020N" id="P00020N"
+																			  data-mini="true"
+																			  onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="a">a- Planned measurement was not made</option>
+								<option value="b">b- Sample broken/spilled in shipment</option>
+								<option value="e">e- Required equipment not functional or available</option>
+								<option value="f">f- Sample discarded: improper filter used</option>
+								<option value="x">x- Result failed, quality assurance review</option>
+							</select>
+							</div>
+							<a id="P00020back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+							   data-rel="back">Go Back</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!--hideFromObserver class ends-->
+
+
+			<div class="ui-field-contain veryImportant ">
+				<label for="P00065">Gage height, feet (P00065):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><input type="text" name="P00065" id="P00065" data-mini="true"
+												   onChange="save_data(this.name,this.value)"/></div>
+					<div class="hideFromObserver ui-block-b "><a id="popupP00065" href="#gagePopup" data-rel="popup"
+																 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																 data-mini="true">Options</a></div>
+				</div>
+
+				<div data-role="popup" id="gagePopup" class="ui-content hideFromObserver" data-dismissible="false"
+					 style="min-width:250px;" data-theme="c">
+					<h3>Gage height Options</h3>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a" style="width:40%"><label for="P00065R">Remark:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P00065R" id="P00065R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select>
+						</div>
+						<div class="ui-block-a" style="width:40%"><label for="P00065M">Method:</label></div>
+						<div class="ui-block-b" style="width:60%"><select name="P00065M" id="P00065M" data-mini="true"
+																		  onChange="save_data(this.name,this.value)">
+							<option value=" ">Select...</option>
+							<option value="ACOUS">ACOUS</option>
+							<option value="CLIP">CLIP</option>
+							<option value="CSG">CSG</option>
+							<option value="ETG">ETG</option>
+							<option value="FLOAT">FLOAT</option>
+							<option value="INSD">INSD</option>
+							<option value="MANO">MANO</option>
+							<option value="NCAC">NCAC</option>
+							<option value="NCLZ">NCLZ</option>
+							<option value="NCRD">NCRD</option>
+							<option value="NTRAN">NTRAN</option>
+							<option value="OTSD">OTSD</option>
+							<option value="RP">RP</option>
+							<option value="STAFF">STAFF</option>
+							<option value="STRAN">STRAN</option>
+							<option value="WWG">WWG</option>
+						</select>
+						</div>
+						<a id="P00065back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+						   data-rel="back">Go Back</a>
+					</div>
+				</div>
+
+			</div>
+			<!--field contain-->
+
+
+			<div class="hideFromObserver">
+				<div class="ui-field-contain">
+					<label for="P00095">Specific conductance, &micro;S/cm at 25&deg;C (P00095):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input type="text" name="P00095" id="P00095" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP00095" href="#specificPopup"
+																	 data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="specificPopup" class="ui-content hideFromObserver"
+						 data-dismissible="false"
+						 style="min-width:250px;" data-theme="c">
+						<h3>Specific Conductance Options</h3>
+
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="width:40%"><label for="P00095R">Remark:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P00095R" id="P00095R" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="<">&lt;</option>
+									<option value=">">&gt;</option>
+									<option value="E">E</option>
+									<option value="M">M</option>
+									<option value="N">N</option>
+									<option value="A">A</option>
+									<option value="V">V</option>
+									<option value="S">S</option>
+									<option value="U">U</option>
+								</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P00095M">Method:</label></div>
+							<div class="ui-block-b" style="width:60%"><select name="P00095M" id="P00095M"
+																			  data-mini="true"
+																			  onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="SC001">SC001</option>
+							</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P00095N">Null qualifier:</label></div>
+							<div class="ui-block-b" style="width:60%"><select name="P00095N" id="P00095N"
+																			  data-mini="true"
+																			  onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="a">a- Planned measurement was not made</option>
+								<option value="b">b- Sample broken/spilled in shipment</option>
+								<option value="e">e- Required equipment not functional or available</option>
+								<option value="f">f- Sample discarded: improper filter used</option>
+								<option value="x">x- Result failed, quality assurance review</option>
+							</select>
+							</div>
+							<a id="P00095back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+							   data-rel="back">Go Back</a>
+						</div>
+					</div>
+				</div>
+				<!--field contain -->
+
+				<div class="ui-field-contain veryImportant">
+					<label for="P63675">Turbidity, NTU, 400-600 nm, 90 &plusmn;30&deg; (P63675):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input type="text" name="P63675" id="P63675" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP63675" href="#turNTUPopup"
+																	 data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="turNTUPopup" class="sampleParameters2 ui-content hideFromObserver" data-dismissible="false"
+						 style="min-width:250px;" data-theme="c">
+						<h3>Turbidity NTU Options</h3>
+
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="width:40%"><label for="P63675R">Remark:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63675R" id="P63675R" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="<">&lt;</option>
+									<option value=">">&gt;</option>
+									<option value="E">E</option>
+									<option value="M">M</option>
+									<option value="N">N</option>
+									<option value="A">A</option>
+									<option value="V">V</option>
+									<option value="S">S</option>
+									<option value="U">U</option>
+								</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P63675M">Method:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63675M" id="P63675M" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="TS028">TS028 - Other NTU instrument</option>
+									<option value="TS088">TS088 - HACH Filter Track 660, NTU</option>
+									<option value="TS089">TS089 - ESD, sensor model 800/800P</option>
+									<option value="TS093">TS093 - HACH, sensor model 2100 A, NTU</option>
+									<option value="TS094">TS094 - HACH, sensor model 1720 C, NTU</option>
+									<option value="TS095">TS095 - HACH, sensor model 1720 D, NTU</option>
+									<option value="TS096">TS096 - HACH, sensor model 1720 E, NTU</option>
+									<option value="TS097">TS097 - HACH, sensor model 2100 AN,R-Off</option>
+									<option value="TS099">TS099 - HACH, sensor model 2100 N  R-Off</option>
+									<option value="TS102">TS102 - HACH, sensor model SS6, NTU	HACH</option>
+									<option value="TS103">TS103 - HF Scientific, Micro TPW, NTU</option>
+									<option value="TS104">TS104 - HF Scientific, MicroTOL, white</option>
+									<option value="TS105">TS105 - HF Scientific, DRT-15CE, NTU</option>
+									<option value="TS106">TS106 - HF Scientific, Micro 1000, white</option>
+									<option value="TS108">TS108 - HF Scientific, Micro100, white</option>
+									<option value="TS109">TS109 - HF Scientific, Micro200, NTU</option>
+									<option value="TS110">TS110 - Hanna Instruments, model C102</option>
+									<option value="TS111">TS111 - Hanna Instruments, model C114</option>
+									<option value="TS112">TS112 - ICM, sensor model 11520</option>
+									<option value="TS113">TS113 - ICM, sensor model 11150, NTU</option>
+									<option value="TS114">TS114 - LaMotte Instruments model 2008</option>
+									<option value="TS118">TS118 - Monitek Technologies Model TA-1</option>
+									<option value="TS120">TS120 - Optek, sensor model TF16, NTU</option>
+									<option value="TS121">TS121 - Orbeco-Hellige model 965-10A,NTU</option>
+									<option value="TS122">TS122 - Orbeco-Hellige model 966-01, NTU</option>
+									<option value="TS124">TS124 - Turbiquant model 1500 T, NTU</option>
+									<option value="TS126">TS126 - Turner Designs, model Aquafluor</option>
+									<option value="TS127">TS127 - Turner Designs, model SCUFA, NTU</option>
+									<option value="TS128">TS128 - WTW Measurement Systems 550, NTU</option>
+									<option value="TS130">TS130 - Wetlabs model ECO-FLNTU, NTU</option>
+									<option value="TS131">TS131 - WaterPOINT, sensor 870, NTU</option>
+									<option value="TS132">TS132 - WTW Measurement Systems 355, NTU</option>
+									<option value="TS133">TS133 - WTW Measurement Systems 430, NTU</option>
+									<option value="TS134">TS134 - Rosemount Clarity II (WHITE),NTU</option>
+									<option value="TS135">TS135 - Chemtrac TruTrac, NTU</option>
+									<option value="TS136">TS136 - Eutech Instruments TB100, NTU</option>
+									<option value="TS137">TS137 - Cole-Parmer EW-08391-40, NTU</option>
+									<option value="TS138">TS138 - VWR Instruments sensor 800, NTU</option>
+								</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P63675N">Null qualifier:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63675N" id="P63675N" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="a">a- Planned measurement was not made</option>
+									<option value="b">b- Sample broken/spilled in shipment</option>
+									<option value="e">e- Required equipment not functional or available</option>
+									<option value="f">f- Sample discarded: improper filter used</option>
+									<option value="x">x- Result failed, quality assurance review</option>
+								</select>
+							</div>
+							<a id="P63675back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+							   data-rel="back">Go Back</a>
+						</div>
+					</div>
+				</div>
+				<!--field contain -->
+
+				<div class="ui-field-contain veryImportant">
+					<label for="P63676">Turbidity, NTRU, 400-600 nm, multile angles (P63676):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input type="text" name="P63676" id="P63676" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP63676" href="#turNTRUPopup"
+																	 data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="turNTRUPopup" class="ui-content hideFromObserver"
+						 data-dismissible="false"
+						 style="min-width:250px;" data-theme="c">
+						<h3>Turbidity NTRU Options</h3>
+
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="width:40%"><label for="P63676R">Remark:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63676R" id="P63676R" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="<">&lt;</option>
+									<option value=">">&gt;</option>
+									<option value="E">E</option>
+									<option value="M">M</option>
+									<option value="N">N</option>
+									<option value="A">A</option>
+									<option value="V">V</option>
+									<option value="S">S</option>
+									<option value="U">U</option>
+								</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P63676M">Method:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63676M" id="P63676M" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="TS027">TS027 - Other NTRU instrument</option>
+									<option value="TS090">TS090 - Global Water, model WQ710</option>
+									<option value="TS091">TS091 - HACH, sensor model 18900, NTRU</option>
+									<option value="TS092">TS092 - HACH, sensor model 43900/XR</option>
+									<option value="TS098">TS098 - HACH, sensor model 2100 AN, R-On</option>
+									<option value="TS100">TS100 - HACH, sensor model 2100 N, R-On</option>
+									<option value="TS101">TS101 - HACH, sensor model 2100 P, NTRU</option>
+									<option value="TS107">TS107 - HF Scientific, Micro 1000, WR</option>
+									<option value="TS115">TS115 - LaMotte Instruments model 2020</option>
+									<option value="TS116">TS116 - LaMotte Instruments model 2020e</option>
+									<option value="TS117">TS117 - Lamotte Instruments model 3000e</option>
+									<option value="TS119">TS119 - Monitek Technologies TA6-FS,NTRU</option>
+									<option value="TS123">TS123 - Thermo, Orion AQUAFast AQ4500,WR</option>
+									<option value="TS125">TS125 - Turbiquant model 3000 T, R-On</option>
+									<option value="TS129">TS129 - WTW Measurement Systems 555,NTRU</option>
+									<option value="TS141">TS141 - WTW Instruments pHotoFlex, NTRU</option>
+									<option value="TS167">TS167 - Hanna Instruments HI 83414, NTRU</option>
+									<option value="TS168">TS168 - Hanna Instr. HI 88703 (ON), NTRU</option>
+									<option value="TS169">TS169 - Horiba Instr. 7801 (U-53), NTRU</option>
+									<option value="TS192">TS192 - Hanna Instruments HI 93414, NTRU</option>
+									<option value="TS193">TS193 - Hanna Instruments HI 98703, NTRU</option>
+									<option value="TS196">TS196 - HACH 2100Q, NTRU</option>
+								</select></div>
+							<div class="ui-block-a" style="width:40%"><label for="P63676N">Null qualifier:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63676N" id="P63676N" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="a">a- Planned measurement was not made</option>
+									<option value="b">b- Sample broken/spilled in shipment</option>
+									<option value="e">e- Required equipment not functional or available</option>
+									<option value="f">f- Sample discarded: improper filter used</option>
+									<option value="x">x- Result failed, quality assurance review</option>
+								</select></div>
+							<a id="P63676back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+							   data-rel="back">Go Back</a>
+						</div>
+					</div>
+				</div>
+				<!-- field contain -->
+
+				<div class="ui-field-contain veryImportant">
+					<label for="P63680">Turbidity, FNU, 780-900 nm, 90 &plusmn;2.5&deg; (P63680):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input type="text" name="P63680" id="P63680" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP63680" href="#turFNUPopup"
+																	 data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-btn-icon-left ui-btn-inline ui-corner-all"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="turFNUPopup" class="ui-content hideFromObserver" data-dismissible="false"
+						 style="min-width:250px;" data-theme="c">
+						<h3>Turbidity FNU Options</h3>
+
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="width:40%"><label for="P63680R">Remark:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63680R" id="P63680R" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="<">&lt;</option>
+									<option value=">">&gt;</option>
+									<option value="E">E</option>
+									<option value="M">M</option>
+									<option value="N">N</option>
+									<option value="A">A</option>
+									<option value="V">V</option>
+									<option value="S">S</option>
+									<option value="U">U</option>
+								</select></div>
+							<div class="ui-block-a" style="width:40%"><label for="P63680M">Method:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63680M" id="P63680M" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="1">method</option>
+									<option value="TS031">TS031 - Eureka Environmental Trimeter</option>
+									<option value="TS032">TS032 - Forest Technology Systems DTS-12</option>
+									<option value="TS034">TS034 - Greenspan, sensor model TS 100</option>
+									<option value="TS035">TS035 - Greenspan, sensor model TS 1200</option>
+									<option value="TS036">TS036 - Greenspan, sensor model TS 300</option>
+									<option value="TS037">TS037 - HACH, sensor model 1720 D/L, FNU</option>
+									<option value="TS038">TS038 - HACH, sensor model 2100 AN IS</option>
+									<option value="TS040">TS040 - HACH, sensor model 2100 N IS</option>
+									<option value="TS041">TS041 - HACH, sensor model Optiquant</option>
+									<option value="TS042">TS042 - HACH Pocket Turbidimeter, FNU</option>
+									<option value="TS043">TS043 - HF Scientific MicroTOL, IR, FNU</option>
+									<option value="TS044">TS044 - HF Scientific Micro 1000, IR</option>
+									<option value="TS047">TS047 - HF Scientific Micro TPI, FNU</option>
+									<option value="TS048">TS048 - HF Scientific Micro100, IR, FNU</option>
+									<option value="TS049">TS049 - Hanna Instruments model 93703</option>
+									<option value="TS050">TS050 - Hanna Instruments model LP2000</option>
+									<option value="TS053">TS053 - Hydrolab Datasonde 4a, FNU</option>
+									<option value="TS054">TS054 - Hydrolab Datasonde 4, FNU</option>
+									<option value="TS055">TS055 - In-Situ MP TROLL 9000, FNU</option>
+									<option value="TS056">TS056 - Innovative Sensors model 31</option>
+									<option value="TS057">TS057 - Lamotte Instruments model 2020i</option>
+									<option value="TS058">TS058 - Lamotte Instruments model 3000i</option>
+									<option value="TS059">TS059 - McVan Analite NEP 160-3 (90 deg)</option>
+									<option value="TS060">TS060 - McVan Analite NEP 195, FNU</option>
+									<option value="TS061">TS061 - McVan Analite NEP 390, FNU</option>
+									<option value="TS062">TS062 - McVan Analite NEP 391, FNU</option>
+									<option value="TS063">TS063 - McVan Analite NEP 395, FNU</option>
+									<option value="TS064">TS064 - McVan Analite NEP 396, FNU</option>
+									<option value="TS065">TS065 - McVan Analite NEP 495, FNU</option>
+									<option value="TS066">TS066 - McVan Analite NEP 9000, FNU</option>
+									<option value="TS067">TS067 - McVan Analite NEP 9500, FNU</option>
+									<option value="TS068">TS068 - Orbeco-Hellige Model 965-IR</option>
+									<option value="TS069">TS069 - Orbeco-Hellige sensor 966-IR,FNU</option>
+									<option value="TS070">TS070 - Other FNU instrument</option>
+									<option value="TS071">TS071 - Seapoint Sensors Turbidity Meter</option>
+									<option value="TS074">TS074 - Thermo, Orion AQUAFast AQ4500,IO</option>
+									<option value="TS075">TS075 - Turbiquant sensor model 1000 IR</option>
+									<option value="TS076">TS076 - Turbiquant sensor model 1500 IR</option>
+									<option value="TS078">TS078 - Turbiquant model 3000 IR, R-Off</option>
+									<option value="TS080">TS080 - Vernier, sensor model TRB-BTA</option>
+									<option value="TS081">TS081 - WTW Measurement Systems 350 IR</option>
+									<option value="TS082">TS082 - WTW Measurement Systems 550 IR</option>
+									<option value="TS084">TS084 - WTW Measurement, VisoTurb 700 IQ</option>
+									<option value="TS085">TS085 - YSI model 6026, FNU</option>
+									<option value="TS086">TS086 - YSI model 6026-4000, FNU</option>
+									<option value="TS087">TS087 - YSI Environmental, sensor 6136</option>
+									<option value="TS145">TS145 - Lamotte, sensor model 2020i, FNU</option>
+									<option value="TS146">TS146 - In-Situ Instruments Troll 9500</option>
+									<option value="TS147">TS147 - Endress+Hauser TurbiMax W CUS 31</option>
+									<option value="TS148">TS148 - Rosemount Clarity II (INFRA RED)</option>
+									<option value="TS149">TS149 - Oakton, sensor model T 100, FNU</option>
+									<option value="TS150">TS150 - Hydrolab, Series 5 Datasondes</option>
+									<option value="TS151">TS151 - Eutech Instruments TB100 IR, FNU</option>
+									<option value="TS156">TS156 - Turner Designs, Cyclops-7, FNU</option>
+									<option value="TS173">TS173 - Eureka Environmental 316 SS, FNU</option>
+									<option value="TS174">TS174 - Global Water TB 500 IR, FNU</option>
+									<option value="TS175">TS175 - Global Water Instr. WQ750, FNU</option>
+									<option value="TS176">TS176 - Hanna Instr. HI 88713 (OFF), FNU</option>
+									<option value="TS177">TS177 - Thermo Sci. Orion AQ3010, FNU</option>
+									<option value="TS178">TS178 - WTW 430IR, FNU	WTW, sensor model 430IR, FNU</option>
+									<option value="TS189">TS189 - QW Swan A.I., AMI Turbiwell, FNU</option>
+									<option value="TS198">TS198 - HACH Solitax sc (turb mode), FNU</option>
+									<option value="TS208">TS208 - Turner Designs, Cyclops-7, FNU</option>
+									<option value="TS209">TS209 - Campbell OBS-500 (sidescat), FNU</option>
+									<option value="TS213">TS213 - YSI EXO turbidity sensor, FNU</option>
+								</select>
+							</div>
+							<div class="ui-block-a" style="width:40%"><label for="P63680N">Null qualifier:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P63680N" id="P63680N" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="a">a- Planned measurement was not made</option>
+									<option value="b">b- Sample broken/spilled in shipment</option>
+									<option value="e">e- Required equipment not functional or available</option>
+									<option value="f">f- Sample discarded: improper filter used</option>
+									<option value="x">x- Result failed, quality assurance review</option>
+								</select></div>
+							<a id="P63680back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+							   data-rel="back">Go Back</a>
+						</div>
+					</div>
+				</div>
+				<!-- field contain -->
+
+				<div class="ui-field-contain veryImportant">
+					<label for="P65225">Transparency, transparency tube, cm (P65225):</label>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><input type="text" name="P65225" id="P65225" data-mini="true"
+													   onChange="save_data(this.name,this.value)"/></div>
+						<div class="hideFromObserver ui-block-b "><a id="popupP65225" href="#transpPopup"
+																	 data-rel="popup"
+																	 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																	 data-mini="true">Options</a></div>
+					</div>
+
+					<div data-role="popup" id="transpPopup" class="ui-content hideFromObserver" data-dismissible="false"
+						 style="min-width:250px;" data-theme="c">
+						<h3>Transparency Options</h3>
+
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="width:40%"><label for="P65225R">Remark:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P65225R" id="P65225R" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="<">&lt;</option>
+									<option value=">">&gt;</option>
+									<option value="E">E</option>
+									<option value="M">M</option>
+									<option value="N">N</option>
+									<option value="A">A</option>
+									<option value="V">V</option>
+									<option value="S">S</option>
+									<option value="U">U</option>
+								</select></div>
+							<div class="ui-block-a" style="width:40%"><label for="P65225M">Method:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P65225M" id="P65225M" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="TTUBE">TTUBE</option>
+								</select></div>
+							<div class="ui-block-a" style="width:40%"><label for="P65225N">Null qualifier:</label></div>
+							<div class="ui-block-b" style="width:60%">
+								<select name="P65225N" id="P65225N" data-mini="true"
+										onChange="save_data(this.name,this.value)">
+									<option value=" ">Select...</option>
+									<option value="a">a- Planned measurement was not made</option>
+									<option value="b">b- Sample broken/spilled in shipment</option>
+									<option value="e">e- Required equipment not functional or available</option>
+									<option value="f">f- Sample discarded: improper filter used</option>
+									<option value="x">x- Result failed, quality assurance review</option>
+								</select></div>
+							<a id="P65225back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+							   data-rel="back">Go Back</a>
+						</div>
+					</div>
+				</div>
+				<!-- field contain -->
+
+			</div>
+			<!--hideFromObserver class ends-->
+
+			<div id="bedloadAdditionalFields">
+				<p><strong>Bedload Samples need some Extra Field Parameters.</strong></p>
+
+				<div class="ui-field-contain veryImportant">
+					<label for="P30333">Bag mesh size, bedload sampler, mm (P30333):</label>
+					<input type="number" name="P30333" id="P30333" data-mini="true"
+						   onChange="save_data(this.name,this.value)"/>
+				</div>
+
+					<div class="ui-field-contain veryImportant ">
+						<label for="P04117">Tether line used for collecting sample (P04117):</label>
+						<select required id="P04117" name="P04117" data-mini="true"
+								onChange="save_data(this.id,this.value)" onBlur="save_data(this.id,this.value)">
+							<option value="">Select</option>
+							<option value="0">No</option>
+							<option value="1">Yes</option>
+						</select>
+
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P04118">Composite samples in cross-sectional bedload measurement (P04118):</label>
+					<input class="number" type="text" name="P04118" id="P04118" data-mini="true"
+						   onChange="save_data(this.name,this.value)"/>
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P04119">Verticals in composite samples (P04119):</label>
+					<input class="number" type="text" name="P04119" id="P04119" data-mini="true"
+						   onChange="save_data(this.name,this.value)"/>
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P04120">Rest time on bed for bedload samples, seconds (P04120):</label>
+					<input type="number" name="P04120" id="P04120" data-mini="true"
+						   onChange="save_data(this.name,this.value)"/>
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P04121">Horizontal width of vertical, feet (P04121):</label>
+					<input type="number" name="P04121" id="P04121" data-mini="true"
+						   onChange="save_data(this.name,this.value)"/>
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P82073">Starting time (P82073):</label>
+					<input type="text" name="P82073" id="P82073" data-mini="true"
+						   onChange="save_data(this.name,this.value)" pattern="([01]?[0-9]|2[0-3])(:[0-5][0-9]){2}" />
+				</div>
+				<div class="ui-field-contain veryImportant">
+					<label for="P82074">Ending time (P82074):</label>
+					<input type="text" name="P82074" id="P82074" data-mini="true"
+						   onChange="save_data(this.name,this.value)" pattern="([01]?[0-9]|2[0-3])(:[0-5][0-9]){2}" />
+				</div>
+			</div>
+
+			<!--div class="tetherField">
+				<div class="ui-field-contain veryImportant ">
+					<label for="P04117">Tether line used for collecting sample (P04117):</label>
+					<select id="P04117" name="P04117" data-mini="true"
+							onChange="save_data(this.id,this.value)" onBlur="save_data(this.id,this.value)">
+						<option selected="" value="">Select...</option>
+						<option value="0">No</option>
+						<option value="1">Yes</option>
+					</select>
+				</div>
+			</div-->
+
+			<div class="suspendedAdditionalFields">
+				<div class="ui-field-contain veryImportant ">
+					<label for="P04117">Tether line used for collecting sample (P04117):</label>
+					<select id="P04117" name="P04117" data-mini="true"
+							onChange="save_data(this.id,this.value)" onBlur="save_data(this.id,this.value)">
+						<option selected="" value="">Select...</option>
+						<option value="0">No</option>
+						<option value="1">Yes</option>
+					</select>
+				</div>
+			</div>
+
+
+
+		</form>
+
+	</div>
+
+	<div id=bagSamplersDiv data-role="content" class="hideFromObserver">
+		<p><strong>For Bag Samplers only<br/>(Such as DH-2, DH96, D-961A, and D-99)</strong></p>
+
+		<form id="bagSamplers">
+			<div class="ui-field-contain">
+				<label for="P72196">Velocity to compute isokinetic transit rate, ft/s (P72196):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><input type="text" name="P72196" id="P72196" data-mini="true"
+												   onChange="save_data(this.name,this.value)"/></div>
+					<div class="hideFromObserver ui-block-b "><a id="popupP72196" href="#velTransPopup" data-rel="popup"
+																 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																 data-mini="true">Options</a></div>
+				</div>
+
+				<div data-role="popup" id="velTransPopup" class="ui-content hideFromObserver" data-dismissible="false"
+					 style="min-width:250px;" data-theme="c">
+					<h3>Velocity Options</h3>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a" style="width:40%"><label for="P72196R">Remark:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72196R" id="P72196R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select></div>
+						<div class="ui-block-a" style="width:40%"><label for="P72196M">Method:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72196M" id="P72196M" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="SADVM">SADVM</option>
+								<option value="UADVM">UADVM</option>
+								<option value="V-EST">V-EST</option>
+								<option value="VADCP">VADCP</option>
+								<option value="VADV">VADV</option>
+								<option value="VELC">VELC</option>
+								<option value="VICE">VICE</option>
+								<option value="VIPAA">VIPAA</option>
+								<option value="VIPYG">VIPYG</option>
+								<option value="VOTT">VOTT</option>
+								<option value="VPAA">VPAA</option>
+								<option value="VPYG">VPYG</option>
+								<option value="VRAD">VRAD</option>
+								<option value="VTIME">VTIME</option>
+								<option value="VTRNS">VTRNS</option>
+								<option value="VULT">VULT</option>
+							</select></div>
+						<div class="ui-block-a" style="width:40%"><label for="P72196N">Null qualifier:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72196N" id="P72196N" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="a">a- Planned measurement was not made</option>
+								<option value="b">b- Sample broken/spilled in shipment</option>
+								<option value="e">e- Required equipment not functional or available</option>
+								<option value="f">f- Sample discarded: improper filter used</option>
+								<option value="x">x- Result failed, quality assurance review</option>
+							</select></div>
+						<a id="P72196back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+						   data-rel="back">Go Back</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="P72217">Duration sampler collected water, secs (P72217):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><input type="text" name="P72217" id="P72217" data-mini="true"
+												   onChange="save_data(this.name,this.value)"/></div>
+					<div class="hideFromObserver ui-block-b "><a id="popupP72217" href="#durationPopup" data-rel="popup"
+																 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																 data-mini="true">Options</a></div>
+				</div>
+
+				<div data-role="popup" id="durationPopup" class="ui-content hideFromObserver" data-dismissible="false"
+					 style="min-width:250px;" data-theme="c">
+					<h3>Duration Options</h3>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a" style="width:40%"><label for="P72217">Remark:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72217R" id="P72217R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select></div>
+						<div class="ui-block-a" style="width:40%"><label for="P72217N">Null qualifier:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72217N" id="P72217N" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="a">a- Planned measurement was not made</option>
+								<option value="b">b- Sample broken/spilled in shipment</option>
+								<option value="e">e- Required equipment not functional or available</option>
+								<option value="f">f- Sample discarded: improper filter used</option>
+								<option value="x">x- Result failed, quality assurance review</option>
+							</select></div>
+						<a id="P72217back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+						   data-rel="back">Go Back</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="ui-field-contain">
+				<label for="P72218">Sample Volume to computer isokinetic intake efficiency, ml (P72218):</label>
+
+				<div class="ui-grid-a">
+					<div class="ui-block-a"><input type="text" name="P72218" id="P72218" data-mini="true"
+												   onChange="save_data(this.name,this.value)"/></div>
+					<div class="hideFromObserver ui-block-b "><a id="popupP72218" href="#intakePopup" data-rel="popup"
+																 class="ui-btn ui-icon-minus ui-btn-icon-left ui-corner-all ui-btn-inline"
+																 data-mini="true">Options</a></div>
+				</div>
+
+				<div data-role="popup" id="intakePopup" class="ui-content hideFromObserver" data-dismissible="false"
+					 style="min-width:250px;" data-theme="c">
+					<h3>Volume Options</h3>
+
+					<div class="ui-grid-a">
+						<div class="ui-block-a" style="width:40%"><label for="P72217">Remark:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72218R" id="P72218R" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="<">&lt;</option>
+								<option value=">">&gt;</option>
+								<option value="E">E</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="A">A</option>
+								<option value="V">V</option>
+								<option value="S">S</option>
+								<option value="U">U</option>
+							</select></div>
+						<div class="ui-block-a" style="width:40%"><label for="P72218N">Null qualifier:</label></div>
+						<div class="ui-block-b" style="width:60%">
+							<select name="P72218N" id="P72218N" data-mini="true"
+									onChange="save_data(this.name,this.value)">
+								<option value=" ">Select...</option>
+								<option value="a">a- Planned measurement was not made</option>
+								<option value="b">b- Sample broken/spilled in shipment</option>
+								<option value="e">e- Required equipment not functional or available</option>
+								<option value="f">f- Sample discarded: improper filter used</option>
+								<option value="x">x- Result failed, quality assurance review</option>
+							</select></div>
+						<a id="P72218back" class="ui-btn ui-icon-back ui-btn-icon-left" data-mini="true" href="#"
+						   data-rel="back">Go Back</a>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="ui-field-contain">
+				<fieldset data-type="horizontal" data-role="controlgroup" data-mini="true">
+					<legend>Sampler nozzle material, code (P72219):</legend>
+					<input id="P72219-a" name="P72219" value="1" type="radio" onClick="save_data(this.name,this.value)">
+					<label for="P72219-a">Brass</label>
+					<input id="P72219-b" name="P72219" value="2" type="radio" onClick="save_data(this.name,this.value)">
+					<label for="P72219-b">Plastic</label>
+					<input id="P72219-c" name="P72219" value="3" type="radio" onClick="save_data(this.name,this.value)">
+					<label for="P72219-c">TFE</label>
+					<input id="P72219-d" name="P72219" value="" CHECKED="checked" type="radio"
+						   onClick="save_data(this.name,this.value)">
+					<label for="P72219-d">None</label>
+
+				</fieldset>
+			</div>
+
+			<div class="ui-field-contain">
+				<fieldset data-type="horizontal" data-role="controlgroup" data-mini="true">
+					<legend>Sampler nozzle diameter, code (P72220):</legend>
+					<input id="P72220-a" name="P72220" value="3" type="radio" onClick="save_data(this.name,this.value)">
+					<label for="P72220-a">3/16&quot;</label>
+					<input id="P72220-b" name="P72220" value="4" type="radio" onClick="save_data(this.name,this.value)">
+					<label for="P72220-b">1/4&quot;</label>
+					<input id="P72220-c" name="P72220" value="5" type="radio" onClick="save_data(this.name,this.value)">
+					<label for="P72220-c">5/16&quot;</label>
+					<input id="P72220-d" name="P72220" value="" CHECKED="checked" type="radio"
+						   onClick="save_data(this.name,this.value)">
+					<label for="P72220-d">None</label>
+				</fieldset>
+			</div>
+
+		</form>
+	</div>
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false" class="ui-bar">
+		<a id="backToEventButton" href="#" data-icon="arrow-l" class="ui-btn-lef" data-direction="reverse" data-rel="back">Back	to Event Properties</a>
+		<a id="saveModifySampleButton" href="#" onclick="saveSampleParametersPageAsContainer" data-icon="check" class="ui-btn-lef" >Save Sample Changes</a>
+		<a id="cancelModifySampleButton" href="#viewModifyEventPage" data-icon="delete" class="ui-btn-lef" data-direction="reverse" data-rel="back">Cancel</a>
+		<a id="priorSampleButton" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-rol="button">Prior Sample</a>
+		<a id="nextSampleButton" data-icon="arrow-r" class="ui-btn-right ui-btn-inline" data-role="button">Next Sample </a>
+	</div>
+</div>
+
+<!-- multiSet PAGE ===============================================================-->
+<div data-role="page" id="multiSet" data-theme="d">
+	<div data-role="panel" id="navpanelMultiSet" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelMultiSet"
+		   data-iconpos="notext">Menu</a>
+
+		<h3>Select a Set</h3>
+	</div>
+	<div data-role="content">
+		<p style="color:red;font-size: smaller" align="right">* indicates set has not been viewed/modified</p>
+		<div id="sampleSets">
+		</div>
+	</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<!--a href="#" data-icon="arrow-l" data-iconpos="left" data-role="button" data-rel="back" data-direction="reverse">Back</a-->
+		<a href="#MainMenu" data-icon="arrow-l" data-iconpos="left" data-role="button">Back to Main Menu</a>
+		<!--<a id="addSampleSet" data-icon="plus" class="ui-btn-right ui-btn-inline" data-role="button">Add Set</a>-->
+		<!--button data-icon="plus" data-iconpos="right" id="addSampleSet" data-theme="d" class="ui-btn-right">Add Sample</button-->
+	</div>
+</div>
+
+<!-- setProperties PAGE ===============================================================-->
+<div data-role="page" id="setProperties" data-theme="d">
+	<div data-role="panel" id="navpanelProperties" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelProperties"
+		   data-iconpos="notext">Menu</a>
+
+		<h1 id='setHeader'></h1>
+	</div>
+
+
+	<div data-role="content">
+		<div id="multiAtributes">
+			<form id='setAtributesForm'>
+				<div class="Multi_only">
+					<div class="ui-field-contain">
+						<label for="setType">Select set type:</label>
+						<select id="setType" name="setType" data-mini="true" onchange="save_data(this.name,this.value)" onBlur="save_data(this.name,this.value)">
+							<option value="EDI">EDI</option>
+							<option value="EWI">EWI</option>
+							<option value="EWI">Other</option>
+						</select>
+					</div>
+				</div>
+				<div class="ui-field-contain">
+					<label for="containersQuantity">Number of containers:</label>
+					<input type="number" name="containersQuantity" id="containersQuantity"
+						   data-mini="true" min="1" max="40" value="1"
+						   onchange="save_data(this.name,this.value)"
+						   onBlur="save_data(this.name,this.value)"/>
+				</div>
+
+				<div class="ui-field-contain hideFromObserver">
+					<!--legend>Average the Representational Measures of These Sets?</legend-->
+					<div class="containing-element ui-field-contain">
+						<label>Analyze individual containers?</label>
+						<select id="analyzeIndSamples" name="analyzeIndSamples" data-mini="true"
+								onload="save_data(this.name,this.value)"
+								onChange="save_data(this.id,this.value)"
+								onBlur="save_data(this.id,this.value)"
+								autofocus>
+							<option selected="" value="Y">Yes, Individual</option>
+							<option  value="N">No, Composite</option>
+						</select></div>
+				</div>
+
+			</form>
+			<div class="ui-field-contain">
+				<label for="SetFieldComments">Misc Set Comments:</label>
+				<textarea placeholder="Set Comments - not uploaded to SedLOGIN - 3000 characters max" name="SetFieldComments" rows="4" id="SetFieldComments" maxlength="3000"
+						  onChange="save_data(this.name,this.value)"></textarea>
+			</div>
+		</div>
+		<div class="hideFromObserver">
+			<h4>Analyses Requested (Applies to all samples):</h4>
+
+			<form id='analysesForm' data-mini="true">
+				<label for="analysesC" class='suspendedAdditionalFields'>(C) Concentration</label>
+				<input type="checkbox" name="analysis" id="analysesC" value="C" class='suspendedAdditionalFields'
+					   data-mini="true" onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesSF">(SF) Sand-Fine break**</label>
+				<input type="checkbox" name="analysis" id="analysesSF" value="SF" data-mini="true"
+					   onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesSA">(SA) Sand Analysis**</label>
+				<input type="checkbox" name="analysis" id="analysesSA" value="SA" data-mini="true"
+					   onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesT" class='suspendedAdditionalFields'>(T) Turbidity</label>
+				<input type="checkbox" name="analysis" id="analysesT" value="T" class='suspendedAdditionalFields'
+					   data-mini="true" onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesLOI">(LOI) Loss-on-ignition**</label>
+				<input type="checkbox" name="analysis" id="analysesLOI" value="LOI" data-mini="true"
+					   onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesBD" class='bottomAdditionalFields'>(BD) Bulk Density</label>
+				<input type="checkbox" name="analysis" id="analysesBD" value="BD" class='bottomAdditionalFields'
+					   data-mini="true" onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesFO" class='bottomAdditionalFields bedloadAdditionalFields'>(FO) Fines Only</label>
+				<input type="checkbox" name="analysis" id="analysesFO" value="FO"
+					   class='bottomAdditionalFields bedloadAdditionalFields' data-mini="true"
+					   onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesDS" class='suspendedAdditionalFields'>(DS) Dissolved Solids</label>
+				<input type="checkbox" name="analysis" id="analysesDS" value="DS" class='suspendedAdditionalFields'
+					   data-mini="true" onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesSC" class='suspendedAdditionalFields'>(SC) Specific Conductance</label>
+				<input type="checkbox" name="analysis" id="analysesSC" value="SC" class='suspendedAdditionalFields'
+					   data-mini="true" onClick="chkBox(this.id,this.value)"/>
+				<label for="analysesZ">(Z) Full-size fractions**</label>
+				<input type="checkbox" name="analysis" id="analysesZ" value="Z" data-mini="true"
+					   onClick="chkBox(this.id,this.value)"/>
+			</form>
+			<span>&nbsp;(**) Possible add-on analysis for individual containers.</span>
+		</div>
+	</div>
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#" class="ui-btn-lef" data-icon="arrow-l" data-direction="reverse" data-rel="back">Back</a>
+		<a id="linkToContainers" onclick="linkToContainersFunction()" data-icon="arrow-r" data-iconpos="right" data-role="button" data-theme="d"
+		   class="ui-btn-right">Add Sample Info</a>
+	</div>
+</div>
+
+
+
+<!-- history PAGE ==============================================-->
+<div data-role="page" id="historyPage" data-theme="d">
+	<div data-role="panel" id="navpanelHistory" data-theme="d" data-display="overlay" data-position="right">
+		<script type="text/javascript">document.write(menuItemsHTML);</script>
+	</div>
+
+	<div data-role="header" data-position="fixed" data-tap-toggle="false">
+		<a data-icon="bars" class="ui-btn-right" style="margin-top:10px;" href="#navpanelHistory" data-iconpos="notext">Menu</a>
+
+		<h3>History & Review</h3>
+	</div>
+	<div data-role="content">
+		<h4>List of all submitted events by this user:</h4>
+		<h6 align="right" id="historySortStatement"></h6>
+
+		<div id='historySamples'></div>
+	</div>
+
+
+	<div style="max-width: 400px;" id="authenticateDialogHist" data-role="popup" data-theme="d" data-overlay-theme="d"
+		 data-dismissible="false">
+		<div data-role="header" data-theme="a">
+			<h1>Authenticate</h1>
+		</div>
+		<div id="dialogAuthenticateHist" class="ui-content" role="main">
+		</div>
+	</div>
+
+	<!--div style="max-width: 400px;" id="authenticateDialogHist" data-role="popup" data-theme="d" data-overlay-theme="d"
+		 data-dismissible="false">
+		<div data-role="header" data-theme="a">
+			<h1>Authenticate</h1>
+		</div>
+		<div id="dialogAuthenticateHist" class="ui-content" role="main">
+		</div>
+	</div-->
+
+	<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+		<a href="#MainMenu" data-icon="arrow-l" class="ui-btn-lef ui-btn-inline" data-role="button">Back to users
+			menu</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	$('#evtDate').datetimepicker({
+		timepicker: false,
+		maxDate: 0,
+		minDate: new Date(2000, 1 - 1, 1),
+		formatDate: 'Y-m-d',
+		format: 'Y-m-d',
+		mask: false // '9999/19/39 29:59' - digit is the maximum possible for a cell
+	});
+
+	$('#beginDate').datetimepicker({
+		timepicker: false,
+		maxDate: 0,
+		minDate: new Date(2000, 1 - 1, 1),
+		formatDate: 'Y-m-d',
+		format: 'Y-m-d',
+		mask: false, // '9999/19/39 29:59' - digit is the maximum possible for a cell
+	});
+
+
+
+	function formatTime(time) {
+		var result = "wrong time", m;
+		var re = /^\s*([01]?\d|2[0-3])(:?([0-5]\d))?\s*$/;
+		if ((m = time.match(re))) {
+			//result = (m[1].length == 2 ? "" : "0") + m[1] + ":" + (m[2] || "00");
+			result = m[1] + m[2];
+			if (dateTimeExistsInSet() == true) {
+				result = "date/time exists";
+			}
+		}
+
+
+		return result;
+	}
+
+	//function dateTimeExists() {
+
+	//}
+
+	$.mask.definitions['H'] = "[0-2]";
+	$.mask.definitions['M'] = "[0-5]";
+	$('#beginTime').mask("H9:M9", {
+		placeholder: "HH:mm", completed: function () {
+			this.val(formatTime(this.val()))
+		}
+	});
+	//$('#beginTime').mask("H9:M9",{placeholder:"HH:mm (24hr)"});
+	/*
+	 $('#beginTime').datetimepicker({
+	 datepicker:false,
+	 format:'H:i',
+	 mask:true,
+	 value: '23:59'
+	 // step:1
+	 });
+	 */
+	$('#P82073').datetimepicker({
+		datepicker: false,
+		format: 'H:i',
+		mask: false,
+		step: 1,
+		timepickerScrollbar: false
+		// '9999/19/39 29:59' - digit is the maximum possible for a cell
+	});
+	$('#P82074').datetimepicker({
+		datepicker: false,
+		format: 'H:i',
+		mask: false,
+		step: 1,
+		timepickerScrollbar: false
+		// '9999/19/39 29:59' - digit is the maximum possible for a cell
+	});
+
+	$(document).on('pageshow', '#MainMenu', function (event) {
+		//console.log("pageshow Mainmenu");
+		init(); //$.mobile.hidePageLoadingMsg();
+	});
+
+	$(document).on('pageshow', '#newEvent', function (event) {
+		//console.log("pageshow newEvent");
+		init(); //$.mobile.hidePageLoadingMsg();
+
+	});
+
+	function init() {
+		var header = $('[data-role=header]').outerHeight();
+		var panel = $('.ui-panel').height();
+		var panelheight = panel - header;
+		//console.log("height: "+header);
+		//console.log("panel: "+panel);
+		$('.ui-panel').css({
+			'top': header,
+			'min-height': panelheight
+		});
+	}
+
+
+	$('#P00061back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 0);
+	});
+	$('#P00020back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P00065back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 0);
+	});
+	$('#P00010back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P00095back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P63675back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P63676back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P63680back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P65225back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+
+	$('#P72196back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P72217back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	$('#P72218back').click(function () {
+		anyChangeInPopupData((this.id).substring(0, 6), 1);
+	});
+	/*
+	 $('#popupP61back').click(function() {
+	 $('#popupP61').attr('data-icon','star');
+	 $('#popupP61').removeClass('ui-icon-grid').addClass('ui-icon-star');
+	 });
+
+	 */
+</script>
+</body>
+</html>
